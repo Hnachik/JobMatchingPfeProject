@@ -1,0 +1,75 @@
+
+<section class="section-hero overlay inner-page bg-image" [ngStyle]="{'background-image': getUrl()}" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">Login</h1>
+        <div class="custom-breadcrumbs">
+          <a href="#">Home</a> <span class="mx-2 slash">/</span>
+          <span class="text-white"><strong>Login</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-section bg-light">
+  <div class="app flex-row align-items-center">
+    <div class="container">
+      <div class="row justify-content-around">
+        <div class="col-md-8">
+          <div class="card-group mb-0">
+            <div class="card p-4 shadow border-success">
+              <div class="card-block">
+                <h1>Login</h1>
+                <p class="text-muted">S'authentifier à votre compte</p>
+                <form #loginForm="ngForm" (ngSubmit)="OnSubmit(username.value, password.value)">
+
+                  <div class="input-group mb-2">
+                    <span class="input-group-append mt-2"><i class="icon-user"></i></span>
+                    <input type="text" #username ngModel name="username" class="form-control rounded-pill ml-2" placeholder="Username" required>
+                  </div>
+
+                  <div class="input-group mb-2">
+                    <span class="input-group-append mt-2"><i class="icon-lock"></i></span>
+                    <input type="password" #password ngModel name="password" class="form-control rounded-pill ml-2" placeholder="Password" required>
+                  </div>
+
+                  <div *ngIf="isLoginSucess" class="alert alert-success" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Success!</strong> Inscription réussie !
+                  </div>
+
+                  <div *ngIf="isLoginError" class="alert alert-warning" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <strong>Erreur!</strong> Inscription non réussie !
+                  </div>
+
+                  <span style="color: red">{{errorMsg}}</span>
+                  <div class="row">
+                    <div class="col-6">
+                      <button type="submit" [disabled]="!loginForm.valid" class="btn btn-outline-primary mt-2 px-2">S'authentifier</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="card card-inverse card-primary py-3 hidden-md-down shadow border-success">
+              <div class="card-block text-center">
+                <div>
+                  <h2>S'inscrire</h2>
+                  <p>S'inscrire pour pouvoir adhérer notre plateforme et avoir la chance de postuler à votre offre de rêve. </p>
+                  <button type="button" class="btn btn-outline-info mt-1 w-50 h-100" routerLinkActive="active"
+                          [routerLink]="['/signup-jobseeker']">Job Seeker</button>
+                  <br>
+                  <button type="button" class="btn btn-outline-secondary mt-1 w-50 h-100" routerLinkActive="active"
+                          [routerLink]="['/signup-recruiter#top']">Recruiter</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

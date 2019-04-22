@@ -1,0 +1,106 @@
+<section class="section-hero overlay inner-page bg-image" [ngStyle]="{'background-image': getUrl()}" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">Login</h1>
+        <div class="custom-breadcrumbs">
+          <a href="#">Home</a> <span class="mx-2 slash">/</span>
+          <span class="text-white"><strong>Recruiter Registration</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-section bg-light">
+  <div class="app flex-row align-items-center">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="card mx-2">
+            <div class="card-block p-4 shadow-lg" >
+              <h1 class="text-center">Accès Recruteur</h1>
+              <h5 class="text-muted text-center">Recruter sur TalentHunter</h5>
+              <br>
+              <form #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
+
+                <div class="form-group">
+                  <label class="text-dark">Username</label>
+                  <input type="text" name="username" #username="ngModel" [(ngModel)]="recruiter.user.username" class="form-control"
+                         placeholder="Username" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="text-dark">Email address</label>
+                  <input type="text" name="email" #email="ngModel" [(ngModel)]="recruiter.user.email" [pattern]="emailPattern" class="form-control"
+                         placeholder="Email" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="text-dark">Password</label>
+                  <input type="password" name="password" #password="ngModel" [(ngModel)]="recruiter.user.password" class="form-control"
+                         placeholder="Password" required minlength="8">
+                </div>
+
+                <div class="form-group">
+                  <label class="text-dark">Company Name</label>
+                  <input type="text" name="company_name" #company_name="ngModel" [(ngModel)]="recruiter.company_name" class="form-control"
+                         placeholder="Name" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="text-dark">Company Details</label>
+                  <textarea name="company_description" #company_description="ngModel" [(ngModel)]="recruiter.company_description"
+                            class="form-control" placeholder="Description" required style="height:120px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label class="text-dark">Company Logo</label>
+                  <input type="url" name="company_logo" #company_logo="ngModel" [(ngModel)]="recruiter.company_logo" class="form-control"
+                         placeholder="Logo" required>
+                </div>
+
+                <div class="form-group">
+                  <label class="text-dark" for="exampleSelectPrimary">Location</label>
+                  <select name="address" #address="ngModel" [(ngModel)]="recruiter.address" class="form-control border-success" id="exampleSelectPrimary">
+                    <option value="Governorate">Governorate</option>
+                    <option value="Ariana">Ariana</option>
+                    <option value="Béja">Béja</option>
+                    <option value="Ben Arous">Ben Arous</option>
+                    <option value="Bizerte">Bizerte</option>
+                    <option value="Gabès">Gabès</option>
+                    <option value="Gafsa">Gafsa</option>
+                    <option value="Jendouba">Jendouba</option>
+                    <option value="Kairouan">Kairouan</option>
+                    <option value="Kasserine">Kasserine</option>
+                    <option value="Kélibia">Kélibia</option>
+                    <option value="Le Kef">Le Kef</option>
+                    <option value="Mahdia">Mahdia</option>
+                    <option value="La Manouba">La Manouba</option>
+                    <option value="Médenine">Médenine</option>
+                    <option value="Monastir">Monastir</option>
+                    <option value="Nabeul">Nabeul</option>
+                    <option value="Sfax">Sfax</option>
+                    <option value="Sidi Bouzid">Sidi Bouzid</option>
+                    <option value="Siliana">Siliana</option>
+                    <option value="Sousse">Sousse</option>
+                    <option value="Tataouine">Tataouine</option>
+                    <option value="Tozeur">Tozeur</option>
+                    <option value="Tunis">Tunis</option>
+                    <option value="Zaghouan">Zaghouan</option>
+                  </select>
+                </div>
+
+                <button [disabled]="!userRegistrationForm.valid" class="btn btn-primary border-width-2 d-none d-lg-inline-block" type="submit">Submit</button>
+              </form>
+            </div>
+            <!--<div *ngIf="saveSuccess" class="alert alert-success" role="alert">-->
+            <!--<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>-->
+            <!--<strong>Success!</strong> Inscription réussie !-->
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
