@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {UserService} from '../shared/services/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,14 +9,40 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  is_recruiter: boolean = false;
+  is_jobSeeker: boolean = false;
+
+  constructor(private router: Router, private userService: UserService) { }
 
   ngOnInit() {
+    this.userService.castedData.subscribe(data => {
+      if (data) {
+        // @ts-ignore
+        this.is_recruiter = data.user.is_recruiter;
+        // @ts-ignore
+        this.is_jobSeeker = data.user.is_jobSeeker;
+      }
+    });
+    if (this.getUserToken()) {
+      this.userService.getUserClaims().subscribe( data=> {
+        // @ts-ignore
+        this.is_recruiter = data.is_recruiter;
+        // @ts-ignore
+        this.is_jobSeeker = data.is_jobSeeker;
+      });
+    }
   }
 
-  getUrl() {
-    return 'url(https://images6.alphacoders.com/386/386231.jpg)';
+  getUserToken(): string {
+    let userToken = (localStorage.getItem('userToken'));
+    if (userToken == 'null') {
+      userToken = null;
+    }
+    return userToken;
   }
 
-
+  Logout() {
+    localStorage.removeItem('userToken');
+    this.router.navigate(['/login']);
+  }
 }

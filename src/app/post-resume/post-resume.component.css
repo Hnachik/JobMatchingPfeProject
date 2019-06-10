@@ -1,0 +1,641 @@
+.job-job-profile .favorites-user small {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.job-profile .user-pro-section .form-control {
+  width: 85%;
+}
+
+.job-profile .user-pro-section label {
+  width: 15%;
+  margin-top: 10px;
+}
+
+.job-profile .preferences-settings label {
+  width: 100%;
+}
+
+.preferences-settings .checkbox {
+  margin-bottom: 40px;
+}
+
+.preferences-settings .buttons {
+  float: none;
+}
+
+.preferences-settings a.btn {
+  margin-bottom: 0;
+}
+
+.profile-logo {
+  float: left;
+  margin-right: 35px;
+}
+
+.resume-content .profile.section {
+  padding: 25px;
+}
+
+.resume-content {
+  font-size: 14px;
+  line-height: 22px;
+  color: #2d3038;
+}
+
+.resume-content .profile-info h1 {
+  font-size: 30px;
+  color: #2a2a2a;
+}
+
+.resume-content .profile-info address,
+.resume-content .profile-info address a {
+  color: #2d3038;
+  font-size: 16px;
+  line-height: 28px;
+}
+
+.resume-content .icons {
+  color: #00a651;
+  font-size: 30px;
+  float: left;
+  margin-right: 30px;
+}
+
+.resume-content .career-info,
+.resume-content .declaration-info,
+.resume-content .work-info,
+.resume-content .educational-info,
+.resume-content .qualification,
+.resume-content .personal-info,
+.educational-info ul,
+.proficiency {
+  overflow: hidden;
+}
+
+.resume-content h3 {
+  margin-top: 5px;
+  margin-bottom: 35px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.resume-content .career-info span,
+.resume-content .declaration-info span {
+  margin-bottom: 25px;
+  display: block;
+}
+
+.work-history h4 {
+  font-size: 14px;
+  color: #2d3038;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.work-history h4 span {
+  display: block;
+  font-weight: 400;
+  margin-top: 5px;
+  line-height: 22px;
+}
+
+.work-history ul li,
+.educational-info ul li {
+  margin-bottom: 55px;
+  position: relative;
+}
+
+.work-history ul li:last-child {
+  margin-bottom: 0;
+}
+
+.work-history ul li:after,
+.educational-info ul li:after {
+  position: absolute;
+  content: "";
+  bottom: -25px;
+  left: 0;
+  width: 85%;
+  height: 1px;
+  background-color: #f1f1f1;
+}
+
+.work-history ul li:last-child:after {
+  display: none;
+}
+
+.work-history ul li:last-child.history,
+.educational-info ul li:last-child {
+  margin-bottom: 0;
+}
+
+.educational-info h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #2d3038;
+  margin-bottom: 5px;
+}
+
+.educational-info li ul {
+  margin-bottom: 20px;
+}
+
+.educational-info ul li {
+  position: relative;
+}
+
+.educational-info li ul li:after {
+  display: none;
+}
+
+.educational-info li ul li {
+  float: left;
+  font-weight: 500;
+  color: #2d3038;
+  margin-bottom: 0;
+}
+
+.educational-info li ul li span {
+  font-weight: 400;
+}
+
+.educational-info li ul li+li {
+  margin-left: 40px;
+}
+
+.qualification li {
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.qualification li span {
+  font-weight: 700;
+}
+
+.qualification li:last-child {
+  margin-bottom: 0;
+}
+
+.language-proficiency h5 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+
+.language-proficiency ul>li+li {
+  margin-left: 20px;
+  padding-left: 30px;
+  border-left: 1px solid #f1f1f1;
+}
+
+.language-proficiency ul li ul li {
+  float: left;
+  color: #bbb;
+}
+
+.language-proficiency ul li ul li+li {
+  margin-left: 5px;
+  border-left: 0;
+  padding-left: 0;
+}
+
+.personal-info .address li {
+  overflow: hidden;
+  line-height: 30px;
+  color: #2d3038;
+  font-size: 14px;
+}
+
+.personal-info .address li h5 {
+  float: left;
+  margin-top: 5px;
+  min-width: 180px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.personal-info .address li span {
+  margin-right: 30px;
+}
+
+.declaration {
+  margin-bottom: 45px;
+}
+
+.buttons {
+  float: left;
+}
+
+.download-button {
+  float: right;
+}
+
+.buttons a.btn {
+  margin-top: 0;
+}
+
+.job-postdetails .category-dropdown {
+  border: 1px solid #e3e3e3;
+  border-radius: 5px;
+}
+
+.job-postdetails .category-dropdown a {
+  display: block;
+}
+
+.job-postdetails .category-dropdown .pull-right {
+  margin-top: 15px;
+}
+
+.job-postdetails .dropdown-menu {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.job-postdetails .location .category-dropdown {
+  width: 48%;
+}
+
+.job-postdetails .select-price input[type="text"] {
+  width: 25%;
+}
+
+.job-postdetails .characters {
+  margin-bottom: 30px;
+}
+
+.job-postdetails .agreement.checkbox label:before {
+  top: 0;
+}
+
+.job-user-account {
+  overflow: hidden;
+}
+
+.user-account .nav-tabs {
+  margin-bottom: 70px;
+  position: relative;
+  display: block;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.user-account .nav-tabs:after,
+.user-account .nav-tabs:before {
+  position: absolute;
+  content: "";
+  bottom: -1px;
+  width: 100%;
+  height: 1px;
+  background-color: #e3e3e3;
+}
+
+.user-account .nav-tabs:after {
+  left: -100%;
+}
+
+.user-account .nav-tabs:before {
+  right: -100%;
+}
+
+.user-account .nav-tabs>li {
+  display: inline-block;
+  float: none;
+}
+
+.user-account .nav-tabs>li a {
+  padding: 10px 35px;
+  color: #0a0a0a;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-right: 0;
+  border-radius: 0;
+  border-bottom: 1px solid #e3e3e3;
+  background-color: #f7f7f7;
+}
+
+.user-account .nav-tabs>li+li{
+  margin-left: -4px;
+}
+
+.user-account .nav-tabs>li.active>a,
+.user-account .nav-tabs>li.active>a:focus,
+.user-account .nav-tabs>li a:hover {
+  border: 1px solid #e3e3e3;
+  border-bottom: 1px solid #fff;
+  background-color: transparent;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: #a0a0a0;
+}
+
+.form-control:-moz-placeholder { /* Firefox 18- */
+  color: #a0a0a0;
+}
+
+.form-control::-moz-placeholder {  /* Firefox 19+ */
+  color: #a0a0a0;
+}
+
+.form-control:-ms-input-placeholder {
+  color: #a0a0a0;
+}
+
+/* Post Resume */
+
+.post-resume .form-group {
+  margin-bottom: 20px;
+}
+
+.post-resume h4 {
+  margin-bottom: 30px;
+}
+
+.post-resume .section {
+  overflow: hidden;
+}
+
+.post-resume .photos-resume {
+  margin-bottom: 0;
+}
+
+.job-postdetails .form-group.brand-name,
+.job-postdetails .form-group.address,
+.job-postdetails .premium-options li:last-child {
+  margin-bottom: 10px;
+}
+
+.additional-information textarea.form-control {
+  height: 100px;
+  line-height: 28px;
+}
+
+.post-resume .upload-image {
+  float: right;
+  background-color: #0072bc;
+  color: #fff;
+  width: 29%;
+  text-align: center;
+  cursor: pointer;
+  display: block;
+  padding: 12px 10px 10px;
+  border-radius: 5px;
+}
+
+.post-resume .upload-image input {
+  display: none;
+}
+
+.post-resume .time-period input {
+  width: 47%;
+  display: inline-block;
+}
+
+.post-resume .time-period span {
+  margin-left: 13px;
+}
+
+.career-objective .form-control {
+  height: 250px;
+}
+
+.post-resume .buttons {
+  margin-top: 20px;
+}
+
+.post-resume form .buttons a.btn {
+  background-color: #0072bc;
+  border-color: #0072bc;
+  margin-bottom: 0;
+  padding: 10px 20px;
+}
+
+.post-resume form .buttons a.btn.delete {
+  background-color: #ed1c24;
+  border-color: #ed1c24;
+  margin-left: 20px;
+}
+
+.post-resume form .buttons a.btn:hover,
+.post-resume .upload-image.left:hover {
+  color: #fff;
+}
+
+.photos-resume .form-control {
+  position: relative;
+}
+
+.special-qualification textarea.form-control {
+  height: 250px;
+}
+
+.post-resume .upload-image.left {
+  background-color: transparent;
+  color: #a0a0a0;
+  float: left;
+  width: 69%;
+  border: 1px solid #e3e3e3;
+  position: relative;
+  padding:12px 30px;
+  text-align: left;
+}
+
+.post-resume .upload-image.left:before {
+  position: absolute;
+  content: "\f093";
+  left: 12px;
+  top: 12px;
+  font-family: fontawesome;
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.rating-star {
+  border: 1px solid #e3e3e3;
+  height: 45px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.rating-star .rating {
+  float: left;
+  padding: 6px 10px;
+}
+
+.rating-star .rating > input {
+  display: none;
+}
+
+.rating > input[type="radio"] + label {
+  cursor: default;
+  margin: 0;
+  padding: 0;
+}
+
+.rating input[type="radio"]:checked + label:after {
+  border: 0 !important;
+}
+
+.rating > input[type="radio"] + label:before {
+  margin: 5px;
+  font-size: 14px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+  position: static;
+  border-radius: 0;
+}
+
+.rating > input[type="radio"] + label.half:before {
+  content: "\f089";
+  position: absolute;
+  top: 0;
+}
+
+.rating-star label .label-title {
+  float: left;
+}
+
+.rating-star .rating label {
+  color: #bbb;
+  float: right;
+  position: relative;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #fed700;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: #fed700;
+}
+
+.loading {
+  position: fixed;
+  z-index: 999;
+  height: 2em;
+  width: 2em;
+  overflow: show;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+/* Transparent Overlay */
+.loading:before {
+  content: '';
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.3);
+}
+
+/* :not(:required) hides these rules from IE9 and below */
+.loading:not(:required) {
+  /* hide "loading..." text */
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+.loading:not(:required):after {
+  content: '';
+  display: block;
+  font-size: 10px;
+  width: 1em;
+  height: 1em;
+  margin-top: -0.5em;
+  -webkit-animation: spinner 1500ms infinite linear;
+  -moz-animation: spinner 1500ms infinite linear;
+  -ms-animation: spinner 1500ms infinite linear;
+  -o-animation: spinner 1500ms infinite linear;
+  animation: spinner 1500ms infinite linear;
+  border-radius: 0.5em;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.5) -1.5em 0 0 0, rgba(0, 0, 0, 0.5) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+  box-shadow: rgba(0, 0, 0, 0.75) 1.5em 0 0 0, rgba(0, 0, 0, 0.75) 1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) 0 1.5em 0 0, rgba(0, 0, 0, 0.75) -1.1em 1.1em 0 0, rgba(0, 0, 0, 0.75) -1.5em 0 0 0, rgba(0, 0, 0, 0.75) -1.1em -1.1em 0 0, rgba(0, 0, 0, 0.75) 0 -1.5em 0 0, rgba(0, 0, 0, 0.75) 1.1em -1.1em 0 0;
+}
+
+/* Animation */
+
+@-webkit-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-moz-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@-o-keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes spinner {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+span .small {
+  font-style: italic;
+}

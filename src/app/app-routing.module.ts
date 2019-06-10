@@ -10,6 +10,9 @@ import {BlogComponent} from './blog/blog.component';
 import {LoginComponent} from './login/login.component';
 import {SignupRecruiterComponent} from './signup-recruiter/signup-recruiter.component';
 import {SignupJobseekerComponent} from './signup-jobseeker/signup-jobseeker.component';
+import {PostResumeComponent} from './post-resume/post-resume.component';
+import {ResumeResolve} from './shared/resolvers/resume.resolve';
+import {SeekerPostsComponent} from './seeker-posts/seeker-posts.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,11 +21,15 @@ const routes: Routes = [
   { path: 'job-listing', component: JobListingComponent },
   { path: 'contact', component: ContactComponent},
   { path: 'about', component: AboutComponent },
+  { path: 'seeker-posts', component: SeekerPostsComponent},
   { path: 'post-job', component: PostJobComponent},
-  { path: 'blog', component: BlogComponent},
+  { path: 'blog', component: BlogComponent, resolve: {
+      resumeData: ResumeResolve}
+      },
   { path: 'login', component: LoginComponent},
   { path: 'signup-jobseeker', component: SignupJobseekerComponent},
-  { path: 'signup-recruiter', component: SignupRecruiterComponent}
+  { path: 'signup-recruiter', component: SignupRecruiterComponent},
+  { path: 'post-resume', component: PostResumeComponent},
 ];
 
 @NgModule({

@@ -1,9 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { TagInputModule } from 'ngx-chips';
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { NgxPageScrollModule } from 'ngx-page-scroll';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -17,13 +25,21 @@ import { FooterComponent } from './footer/footer.component';
 import { LoaderComponent } from './loader/loader.component';
 import { BlogComponent } from './blog/blog.component';
 import { LoginComponent } from './login/login.component';
-import {UserService} from './shared/user.service';
+import {UserService} from './shared/services/user.service';
 import { SignupRecruiterComponent } from './signup-recruiter/signup-recruiter.component';
 import { SignupJobseekerComponent } from './signup-jobseeker/signup-jobseeker.component';
 import {AuthGuard} from './auth/auth.guard';
+import { PostResumeComponent } from './post-resume/post-resume.component';
+import {LoaderService} from './shared/services/loader.service';
+import {RestrictTodayDirective} from './restrict-today.directive';
+import {RecruiterService} from './shared/services/recruiter.service';
+import {CandidatService} from './shared/services/candidat.service';
+import {ResumeResolve} from './shared/resolvers/resume.resolve';
+import { SeekerPostsComponent } from './seeker-posts/seeker-posts.component';
 
 @NgModule({
   declarations: [
+    RestrictTodayDirective,
     AppComponent,
     NavbarComponent,
     AboutComponent,
@@ -37,16 +53,26 @@ import {AuthGuard} from './auth/auth.guard';
     BlogComponent,
     LoginComponent,
     SignupRecruiterComponent,
-    SignupJobseekerComponent
+    SignupJobseekerComponent,
+    PostResumeComponent,
+    SeekerPostsComponent
   ],
   imports: [
-    BrowserModule,
+    NgxPageScrollCoreModule.forRoot({duration: 600}),
+    NgxPageScrollModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    NgxSpinnerModule,
     HttpClientModule,
+    BrowserModule,
+    NgxPaginationModule,
     RouterModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
+    TagInputModule
   ],
-  providers: [UserService, AuthGuard],
+  providers: [UserService, LoaderService, AuthGuard, RecruiterService, CandidatService, ResumeResolve],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

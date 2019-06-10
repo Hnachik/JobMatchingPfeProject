@@ -5,259 +5,895 @@
 <section class="site-section bg-light">
   <div class="container">
     <div class="row flex-lg-nowrap">
-      <div class="col-12 col-lg-auto mb-3" style="width: 200px;">
-        <div class="card p-3 shadow">
-          <div class="e-navlist e-navlist--active-bg">
-            <ul class="nav">
-              <li class="nav-item"><a class="nav-link px-2 active" href="./overview.html"><i class="fa fa-fw fa-bar-chart mr-1"></i><span>Overview</span></a></li>
-              <li class="nav-item"><a class="nav-link px-2" href="./users.html"><i class="fa fa-fw fa-th mr-1"></i><span>CRUD</span></a></li>
-              <li class="nav-item"><a class="nav-link px-2" href="./settings.html"><i class="fa fa-fw fa-cog mr-1"></i><span>Settings</span></a></li>
-            </ul>
-          </div>
+      <div class="col-md-3 mb-3" style="width: 200px;">
+        <div class="mj-block" id="menu-container">
+          <nav aria-labelledby="pageTitle" aria-label="Navigation dans la page" role="navigation">
+            <h1 id="pageTitle" class="text-center h2 mj-title section-title-first">Mon profil</h1>
+            <br>
+            <ol class="links-list nombot">
+              <li class="active" [ngClass]="{'active': step==='step1'}" (click)="step='step1'">
+                <span aria-hidden="true" class="fa fa-chevron-right"></span>
+                <a pageScroll href="#identity-container" class="menu-link">
+                  Mon identité
+                </a>
+              </li>
+
+              <li class="" [ngClass]="{'active': step==='step2'}" (click)="step='step2'">
+                <span aria-hidden="true" class="fa fa-chevron-right"></span>
+                <a pageScroll href="#experience-container" class="menu-link">
+                  Mes expériences
+                </a>
+              </li>
+
+              <li class="" [ngClass]="{'active': step==='step3'}" (click)="step='step3'">
+                <span aria-hidden="true" class="fa fa-chevron-right"></span>
+                <a pageScroll href="#schooling-container" class="menu-link">
+                  Mes formations
+                </a>
+              </li>
+              <li class="" [ngClass]="{'active': step==='step4'}" (click)="step='step4'">
+                <span aria-hidden="true" class="fa fa-chevron-right"></span>
+                <a pageScroll href="#skills-container" class="menu-link">
+                  Mes compétences
+                </a>
+              </li>
+
+              <li class="" [ngClass]="{'active': step==='step5'}" (click)="step='step5'">
+                <span aria-hidden="true" class="fa fa-chevron-right"></span>
+                <a pageScroll href="#personaldata-container" class="menu-link">
+                  Infos personnelles
+                </a>
+              </li>
+            </ol>
+            <br>
+            <ngx-spinner
+              bdOpacity = 1
+              bdColor = "#ffffff"
+              size = "large"
+              color = "#3fa534"
+              type = "pacman">
+              <br><br><br><br>
+              <h2 style="color: black; font-style: italic" class="text-center"> Our server is checking for posts that matches your resume</h2>
+              <h2 style="color: black; font-style: italic" class="text-center" > Can you please wait for just 2 or 3 minutes :)</h2>
+            </ngx-spinner>
+            <button type="button" (click)="EvaluateMatching()"
+                    class="btn btn-ghost-primary-alt btn-md btn-add-item add-schooling-button center-block">Find Some Matches</button>
+          </nav>
         </div>
       </div>
 
-      <div class="col">
+      <div class="col-md-9">
         <div class="row">
           <div class="col mb-3">
-            <div class="workshop shadow bg-white mb-3">
+            <div id="identity-container" class="mj-block menu-target">
+              <div class="editable-block" id="identity-display" style="display: block;">
+                <div class="identity-display-div">
+
+                  <div class="identity-content" id="identity-content-div">
+                    <div class="identity-actions">
+                      <a class="fa fa-pencil btn-xs" data-toggle="tooltip" data-original-title="Modifier" style="cursor: pointer;">
+                        <span class="sr-only">Modifier mes informations personnelles</span>
+                      </a>
+                    </div>
+                    <div id="identity-display-name">
+
+                      <h2 class="mj-title section-title text-center">{{resume.seeker.first_name | uppercase}} {{resume.seeker.last_name | uppercase}}</h2>
+
+                    </div>
+                    <div class="identity-main-elements">
+
+                      <div> Poste actuelle :
+                        <button type="button" tabindex="0" title="Modifier un titre" id="editable-item-identity-resumetitle" class="editable-item" style="color: #9aa790; font-style: italic">
+                          {{resume.resume_title}}</button>
+                      </div>
+                      <div id="identity-display-experience-level"> Expérience :
+                        <button type="button" tabindex="0" title="" class="editable-item" style="color: #9aa790; font-style: italic" id="editable-item-identity-experiencelevel">
+                          {{resume.experience_level}}</button>
+                      </div>
+                      <div id="identity-display-last-schooling"> Entreprise actuelle:
+                        <button type="button" tabindex="0" title="Modifier la dernière formation" class="editable-item" style="color: #9aa790; font-style: italic" id="editable-item-identity-last-schooling">
+                          FOCUS
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="identity-display-description">
+                    <button type="button" tabindex="0" title="Modifier une description" id="editable-item-identity-description" class="btn-block text-left editable-item nombot">
+                      {{resume.carrier_objective}}</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-item" id="identity-form-container" style="display: none;">
+                <form method="PUT" id="identity-form" novalidate="">
                   <div class="row">
-                    <div class="col-md-8">
-                      <img src="../../assets/images/vistaprint.png" alt="Image" style="height:20px;">
+                    <div class="col-md-6 form-group has-success">
+                      <label for="identity-firstname">Prénom</label> <span class="required">*</span>
+                      <input type="text" name="firstname" class="form-control" id="identity-firstname" data-initial-value="Gargouri" required="" data-parsley-id="35">
                     </div>
-                    <div class="col-md-4">
-                      <button type="button" class="btn btn-outline-primary btn-sm ml-5">Détails</button>
-                      <button type="button" class="btn btn-outline-primary btn-sm ml-1">Postuler</button>
-                    </div>
-                  </div>
-
-                  <h3><a routerLink="/home">Java Developer</a></h3>
-                  <div class="ad-meta">
-                    <div class="meta-content">
-                      <span class="dated"><a routerLink="/home"><i class="fa fa-calendar fa-sm"></i>&nbsp;<b>28/10/2019</b></a></span>
-                    </div>
-                    <div class="user-option pull-right">
-                      <div class="col-md-2 offset-8 mt-1">
-                        <i class="icon-location-pin icons"></i>&nbsp;<u>Tunis</u>
-                      </div>
+                    <div class="col-md-6 form-group has-success">
+                      <label for="identity-name">Nom</label> <span class="required">*</span>
+                      <input type="text" name="name" class="form-control" id="identity-name" data-initial-value="Amin" required="" data-parsley-id="37">
                     </div>
                   </div>
-                </div>
-            <div class="workshop shadow bg-white mb-3">
-              <div class="row">
-                <div class="col-md-8">
-                  <img src="../../assets/images/vistaprint.png" alt="Image" style="height:20px;">
-                </div>
-                <div class="col-md-4">
-                  <button type="button" class="btn btn-outline-primary btn-sm ml-5">Détails</button>
-                  <button type="button" class="btn btn-outline-primary btn-sm ml-1">Postuler</button>
-                </div>
-              </div>
-
-              <h3><a routerLink="/home">Java Developer</a></h3>
-              <div class="ad-meta">
-                <div class="meta-content">
-                  <span class="dated"><a routerLink="/home"><i class="fa fa-calendar fa-sm"></i>&nbsp;<b>28/10/2019</b></a></span>
-                </div>
-                <div class="user-option pull-right">
-                  <div class="col-md-2 offset-8 mt-1">
-                    <i class="icon-location-pin icons"></i>&nbsp;<u>Tunis</u>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="workshop shadow bg-white mb-3">
-              <div class="row">
-                <div class="col-md-8">
-                  <img src="../../assets/images/vistaprint.png" alt="Image" style="height:20px;">
-                </div>
-                <div class="col-md-4">
-                  <button type="button" class="btn btn-outline-primary btn-sm ml-5">Détails</button>
-                  <button type="button" class="btn btn-outline-primary btn-sm ml-1">Postuler</button>
-                </div>
-              </div>
-
-              <h3><a routerLink="/home">Java Developer</a></h3>
-              <div class="ad-meta">
-                <div class="meta-content">
-                  <span class="dated"><a routerLink="/home"><i class="fa fa-calendar fa-sm"></i>&nbsp;<b>28/10/2019</b></a></span>
-                </div>
-                <div class="user-option pull-right">
-                  <div class="col-md-2 offset-8 mt-1">
-                    <i class="icon-location-pin icons"></i>&nbsp;<u>Tunis</u>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <br>
-            <div class="card shadow">
-              <div class="card-body">
-                <div class="e-profile">
                   <div class="row">
-                    <div class="col-12 col-sm-auto mb-3">
-                      <div class="mx-auto" style="width: 140px;">
-                        <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">
-                          <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>
-                        </div>
-                      </div>
+                    <div class="col-md-6 form-group has-success">
+                      <label for="identity-resumetitle">Titre du profil</label>
+                      <input type="text" name="resumetitle" class="form-control" id="identity-resumetitle" data-initial-value="Ingénieur Telecominication" data-parsley-maxlength="200" data-parsley-id="39">
                     </div>
-                    <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">
-                      <div class="text-center text-sm-left mb-2 mb-sm-0">
-                        <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith</h4>
-                        <p class="mb-0">@johnny.s</p>
-                        <div class="text-muted"><small>Last seen 2 hours ago</small></div>
-                        <div class="mt-2">
-                          <button class="btn btn-primary" type="button">
-                            <i class="fa fa-fw fa-camera"></i>
-                            <span>Change Photo</span>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="text-center text-sm-right">
-                        <span class="badge badge-secondary">administrator</span>
-                        <div class="text-muted"><small>Joined 09 Dec 2017</small></div>
-                      </div>
+                    <div class="col-md-6 form-group">
+                      <label for="experience-level-select">Expérience professionnelle</label>
+                      <select name="experience-level-select" class="form-control selectpicker bs-select-hidden" id="experience-level-select" data-initial-value="ONE_TWO">
+                        <option value="">Non renseigné</option>
+
+                        <option value="BEGINNER">Débutant à 1 an</option>
+
+                        <option value="ONE_TWO" selected="selected">1-2 ans</option>
+
+                        <option value="THREE_FIVE">3-5 ans</option>
+
+                        <option value="SIX_TEN">6-10 ans</option>
+
+                        <option value="TEN_TWENTY">11-20 ans</option>
+
+                        <option value="TWENTY_AND_MORE">21 ans et plus</option>
+
+                      </select><div class="btn-group bootstrap-select form-control"><button type="button" class="btn dropdown-toggle btn-default" data-toggle="dropdown" data-id="experience-level-select" title="1-2 ans"><span class="filter-option pull-left">1-2 ans</span>&nbsp;<span class="bs-caret"><span class="caret"></span></span></button><div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li data-original-index="0"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Non renseigné</span><span class="fa fa-check check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Débutant à 1 an</span><span class="fa fa-check check-mark"></span></a></li><li data-original-index="2" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">1-2 ans</span><span class="fa fa-check check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">3-5 ans</span><span class="fa fa-check check-mark"></span></a></li><li data-original-index="4"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">6-10 ans</span><span class="fa fa-check check-mark"></span></a></li><li data-original-index="5"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">11-20 ans</span><span class="fa fa-check check-mark"></span></a></li><li data-original-index="6"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">21 ans et plus</span><span class="fa fa-check check-mark"></span></a></li></ul></div></div>
                     </div>
                   </div>
-                  <ul class="nav nav-tabs">
-                    <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>
-                  </ul>
-                  <div class="tab-content pt-3">
-                    <div class="tab-pane active">
-                      <form class="form" novalidate="">
-                        <div class="row">
-                          <div class="col">
-                            <div class="row">
-                              <div class="col">
-                                <div class="form-group">
-                                  <label>Full Name</label>
-                                  <input class="form-control" type="text" name="name" placeholder="John Smith" value="John Smith">
-                                </div>
-                              </div>
-                              <div class="col">
-                                <div class="form-group">
-                                  <label>Username</label>
-                                  <input class="form-control" type="text" name="username" placeholder="johnny.s" value="johnny.s">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col">
-                                <div class="form-group">
-                                  <label>Email</label>
-                                  <input class="form-control" type="text" placeholder="user@example.com">
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col mb-3">
-                                <div class="form-group">
-                                  <label>About</label>
-                                  <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-12 col-sm-6 mb-3">
-                            <div class="mb-2"><b>Change Password</b></div>
-                            <div class="row">
-                              <div class="col">
-                                <div class="form-group">
-                                  <label>Current Password</label>
-                                  <input class="form-control" type="password" >
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col">
-                                <div class="form-group">
-                                  <label>New Password</label>
-                                  <input class="form-control" type="password" >
-                                </div>
-                              </div>
-                            </div>
-                            <div class="row">
-                              <div class="col">
-                                <div class="form-group">
-                                  <label>Confirm <span class="d-none d-xl-inline">Password</span></label>
-                                  <input class="form-control" type="password" ></div>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="col-12 col-sm-5 offset-sm-1 mb-3">
-                            <div class="mb-2"><b>Keeping in Touch</b></div>
-                            <div class="row">
-                              <div class="col">
-                                <label>Email Notifications</label>
-                                <div class="custom-controls-stacked px-2">
-                                  <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="notifications-blog" checked="">
-                                    <label class="custom-control-label" for="notifications-blog">Blog posts</label>
-                                  </div>
-                                  <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="notifications-news" checked="">
-                                    <label class="custom-control-label" for="notifications-news">Newsletter</label>
-                                  </div>
-                                  <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">
-                                    <label class="custom-control-label" for="notifications-offers">Personal Offers</label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col d-flex justify-content-end">
-                            <button class="btn btn-primary" type="submit">Save Changes</button>
-                          </div>
-                        </div>
-                      </form>
 
+                  <div class="form-group mbot-lg has-success">
+                    <label for="identity-description">Description de votre profil</label>
+                    <textarea name="description" class="form-control" rows="3" placeholder="Décrivez en quelques mots votre personnalité, vos motivations et votre recherche d'emploi" id="identity-description" data-initial-value="Pationate about developpement"
+                              data-parsley-custom-maxlength="2000" data-parsley-custom-maxlength-message="Cette chaîne est trop longue. Elle doit avoir au maximum 2000 caractères." style="height: 134px;" data-parsley-id="43">Pationate about developpement
+                    </textarea>
+                  </div>
+                  <div class="form-item-buttons row">
+                    <div class="col-md-8 form-item-buttons-main">
+                      <button class="btn btn-primary-alt btn-md" type="submit" data-loading-text="Enregistrement en cours...">Enregistrer</button>
+                      <button type="button" class="btn btn-ghost-default btn-md mleft" id="cancel-button-identity">Annuler</button>
                     </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+            <div id="personaldata-container" class="mj-block menu-target">
+              <h2 class="mj-title section-title">Informations personnelles</h2>
+              <div class="editable-block" id="personaldata-display" [style.display]="!personalData ? 'block': 'none'">
+                <div class="personaldata-display-div">
+                  <div class="personaldata-actions">
+                    <a class="fa fa-pencil btn-xs" data-toggle="tooltip" title="Modifier"
+                       (click)="personalData = !personalData" style="cursor: pointer;">
+                      <span class="sr-only">Modifier mes informations personnelles</span>
+                    </a>
+                  </div>
+                  <div class="personaldata-item">
+                    <span aria-hidden="true" class="fa fa-envelope-o"></span>
+                    <button type="button" tabindex="0" title="" class="editable-item"
+                            id="editable-item-personaldata-email" data-candidate-email="">amin.gargouri@ensi-uma.tn</button>
+                  </div>
+                  <div class="personaldata-item">
+                    <span aria-hidden="true" class="fa fa-phone"></span>
+                    <button type="button" tabindex="0" title="" class="editable-item" id="editable-item-personaldata-phone">{{resume.seeker.phone_number}}</button>
+                  </div>
+                  <div class="personaldata-item">
+                    <span aria-hidden="true" class="fa fa-map-marker"></span>
+                    <div>
+                      <span class="editable-item" id="editable-item-personaldata-address">{{resume.seeker.address}}</span>
+                    </div>
+                  </div>
+                  <div class="personaldata-item">
+                    <span aria-hidden="true" class="fa fa-birthday-cake"></span>
+                    <button type="button" tabindex="0" title="" class="editable-item" id="editable-item-personaldata-birthdate">
+                      18 décembre 1995</button>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
 
-          <div class="col-12 col-md-3 mb-3">
-            <div class="card mb-3 shadow">
-              <div class="card-body">
-                <div class="px-xl-3">
-                  <button class="btn btn-block btn-secondary">
-                    <i class="fa fa-sign-out"></i>
-                    <span>Logout</span>
+              <div class="form-item" id="personaldata-form-container" [style.display]="personalData ? 'block': 'none'">
+                <form method="PUT" id="personaldata-form" novalidate>
+                  <div class="form-introduction">
+                    TalentHunter s'engage à communiquer vos données uniquement aux recruteurs intéressés par votre profil.
+                    <br>Ces données ne seront jamais fournies à des tiers dans un but commercial.
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6 form-group">
+                      <label for="personaldata-email">
+                        E-mail
+                        <span class="sr-only">au format xxxx@domaine.domaine</span>
+                      </label>
+                      <span class="required">*</span>
+                      <input type="email" name="email" class="form-control" id="personaldata-email"
+                             data-initial-value="amin.gargouri@ensi-uma.tn" required="" data-parsley-email=""
+                             data-parsley-remote="" data-parsley-remote-validator="login"
+                             data-parsley-remote-message="Un compte existe déjà avec cet e-mail.">
+                    </div>
+                    <div class="col-md-3 form-group has-success">
+                      <label for="personaldata-phone">Téléphone</label>
+                      <div class="intl-tel-input allow-dropdown">
+                        <input type="text" name="phone" class="form-control phonetype-field" id="personaldata-phone"
+                               data-parsley-intl-tel="" data-parsley-intl-tel-message="Le numéro de tél est invalide"
+                               data-initial-value="+21656119372" autocomplete="off" placeholder="20 123 456" data-parsley-id="314">
+                      </div>
+                    </div>
+                    <div class="col-md-3 form-group">
+                      <label for="personaldata-birthdate">Date de naissance</label>
+                      <span id="personaldata-birthdate-wrapper" class="input-group">
+                    <input type="text" name="birthdate" class="form-control" id="personaldata-birthdate" data-initial-value="18/12/1995" data-parsley-id="316">
+                    <span class="input-group-addon">
+                        <span aria-hidden="true" class="fa fa-calendar"></span>
+                    </span>
+                </span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="personaldata-address">Adresse</label>
+                      <input type="text" name="address" class="form-control" id="personaldata-address" data-initial-value="41 Rue Houssine bouzaine Sfax">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group">
+                      <label for="personaldata-location">Ville ou code postal</label>
+                      <span class="twitter-typeahead" style="position: relative; display: inline-block;">
+                        <input type="text" id="personaldata-location" name="location" class="form-control tt-input" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">
+                        <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Arial, sans-serif; font-size: 14px; font-style: normal;
+                             font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>
+                        <div class="tt-menu" style="position: absolute; top: 100%; left: 0px; z-index: 100; display: none;">
+                          <div class="tt-dataset tt-dataset-16"></div>
+                        </div>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-item-buttons row">
+                    <div class="col-md-8 form-item-buttons-main">
+                      <button class="btn btn-primary-alt btn-md" type="submit" data-loading-text="Enregistrement en cours...">Enregistrer</button>
+                      <button type="button" class="btn btn-ghost-default btn-md mleft"
+                              (click)="personalData = !personalData" id="cancel-button-personaldata">Annuler</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div id="experience-container" class="mj-block menu-target">
+              <div class="row section-title-row">
+                <div class="col-md-6">
+                  <h2 class="mj-title" id="experience-title">Mes Expériences </h2>
+                </div>
+                <div class="col-md-6 textright">
+                  <button type="button"
+                          class="btn btn-ghost-primary-alt btn-md btn-add-item add-schooling-button"
+                          id="top-add-experience-button" style="display: none;">
+                    <span aria-hidden="true" class="fa fa-plus"></span>
+                    Ajouter une expérience
                   </button>
                 </div>
               </div>
-            </div>
-            <div class="card shadow">
-              <div class="card-body">
-                <h6 class="card-title font-weight-bold">Job Types</h6>
-                <div class="custom-controls-stacked px-2">
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="job-type-1" checked="">
-                    <label class="custom-control-label" for="job-type-1">Blog posts</label>
+
+              <ul class="list-unstyled" id="experience-ul">
+                <div *ngFor="let w of workHistory; let i = index" >
+                  <li class="schooling-li editable-block" id="experience-li-{{w.id}}" [style.display]="!hideWork[w.id] ? 'list-item' : 'none'">
+                    <div class="row">
+                      <div class="profile-col-left profile-dates">
+                        <button type="button" tabindex="0" title="" class="editable-item editable-item-experience-dates-{{w.id}}">{{w.time_period.fromDate}}</button>
+                      </div>
+                      <div class="profile-col-right" style="width: 610px;">
+                        <div>
+                          <div class="schooling-actions">
+                            <form method="DELETE" id="delete-experience-form-{{w.id}}">
+                              <a (click)="deleteWorkHistory(w.id)" class="fa fa-trash-o mr-2" data-toggle="tooltip" title="Supprimer"
+                                 style="cursor: pointer;" id="delete-experience-{{w.id}}"></a>
+                              <a (click)="hideWork[w.id] = !hideWork[w.id]" class="fa fa-pencil" data-toggle="tooltip" title="Modifier"
+                                 style="cursor: pointer;"></a>
+                            </form>
+                          </div>
+                          <div class="saved" id="experience-saved-{{w.id}}" [@fadeInOut] [style.display]="visibleWork[w.id] ? 'block' : 'none'">
+                            <span aria-hidden="true" class="fa fa-check"></span>Enregistré
+                          </div>
+                          <div class="schooling-name">
+                            <button type="button" tabindex="0" title="" class="editable-item medium" id="editable-item-experience-name-{{w.id}}">
+                              {{w.designation}}</button>
+                          </div>
+                        </div>
+
+                        <div class="mtop-xs mbot-xs">
+                          <button type="button" tabindex="0" title="" class="editable-item" id="editable-item-experience-school-{{w.id}}">
+                            {{w.company_name}}</button>
+                        </div>
+                        <pre role="button" class="experience-description editable-item" id="editable-item-experience-description-{{w.id}}">{{w.job_description}}</pre>
+
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div id="container-experience-form-{{w.id}}" class="form-item" [style.display]="hideWork[w.id] ? 'block' : 'none'">
+                      <form method="PUT" [formGroup]="workHistoryForm" id="experience-form-{{w.id}}" class="schooling-form" novalidate>
+                        <div class="row">
+                          <div class="col-md-6 form-group has-success">
+                            <label for="company-name-{{w.id}}">Titre de la formation / du diplôme</label>
+                            <input type="text" name="name" class="form-control" id="company-name-{{w.id}}" [value]="w.company_name"
+                                   formControlName="company_name" data-parsley-maxlength="255" data-parsley-id="343">
+                          </div>
+                          <div class="col-md-6 form-group">
+                            <label for="experience-designation-{{w.id}}">Niveau d'études</label> <span class="required">*</span>
+                            <select name="designation" class="form-control custom-select-lg custom-select" id="experience-designation-{{w.id}}"
+                                    formControlName="designation" data-initial-value="BAC+2" required>
+                              <option value="">Non renseigné</option>
+                              <option value="NONE">Aucun diplôme</option>
+                              <option value="BEPC">BEPC - Brevet des collèges</option>
+                              <option value="BEP">BEP</option>
+                              <option value="CAP">CAP / CFPA</option>
+                              <option value="PHD">Doctorat</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="row form-group time-period" formGroupName="time_period">
+                          <label class="col-md-3 label-title">Time Period</label>
+                          <div class="col-md-9">
+                            <div class="row">
+                              <div class="col">
+                                <input type="date" [value]="w.time_period.fromDate" class="form-control" id="work-fromdate-{{w.id}}" formControlName="fromDate" >
+                              </div>
+                              <div class="col">
+                                <input type="date" [value]="w.time_period.toDate" class="form-control pull-right" id="work-todate-{{w.id}}" formControlName="toDate">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group mbot-lg">
+                          <label for="experience-description-{{w.id}}">Description de la formation</label>
+                          <textarea name="description" class="form-control" rows="3" placeholder="Saisissez une description de votre formation"
+                                    id="experience-description-{{w.id}}"
+                                    [value]="w.job_description" data-parsley-maxlength="2000" style="height: 94px;"
+                                    formControlName="job_description"></textarea>
+                        </div>
+                      </form>
+                      <div class="form-item-buttons row">
+                        <div class="col-md-8 form-item-buttons-main">
+                          <button class="btn btn-primary-alt btn-md" type="submit" id="experience-submit-button-{{w.id}}"
+                                  (click)="updateWorkHistory(w, w.id)" [disabled]="!workHistoryForm.valid"
+                                  data-loading-text="Enregistrement en cours...">Enregistrer</button>
+                          <button (click)="hideWork[w.id] = !hideWork[w.id]" class="btn btn-ghost-default btn-md mleft" id="experience-cancel-button-{{w.id}}">Annuler</button>
+                        </div>
+                        <div class="col-md-4 remove-action" id="remove-experience-{{w.id}}">
+                          <form method="DELETE" id="remove-experience-form-{{w.id}}">
+                            <span aria-hidden="true" class="fa fa-trash-o"></span>
+                            <span>Supprimer</span>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </div>
+              </ul>
+
+              <div id="container-experience-form-add" class="form-item" [style.display]="isWorkVisible ? 'block' : 'none'">
+                <form method="POST" [formGroup]="workHistoryForm" id="experience-form-add" class="schooling-form" novalidate>
+                  <div class="row">
+                    <div class="col-md-6 form-group has-success">
+                      <label for="company-name">Titre de la formation / du diplôme</label>
+                      <input type="text" name="name" class="form-control" id="company-name"
+                             formControlName="company_name" data-parsley-maxlength="255" data-parsley-id="343">
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <label for="experience-designation">Niveau d'études</label> <span class="required">*</span>
+                      <select name="designation" class="form-control custom-select-lg custom-select" id="experience-designation"
+                              formControlName="designation" data-initial-value="BAC+2" required>
+                        <option value="">Non renseigné</option>
+                        <option value="NONE">Aucun diplôme</option>
+                        <option value="BEPC">BEPC - Brevet des collèges</option>
+                        <option value="BEP">BEP</option>
+                        <option value="CAP">CAP / CFPA</option>
+                        <option value="PHD">Doctorat</option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="job-type-2" checked="">
-                    <label class="custom-control-label" for="job-type-2">Newsletter</label>
+                  <div class="row form-group time-period" formGroupName="time_period">
+                    <label class="col-md-3 label-title">Time Period</label>
+                    <div class="col-md-9">
+                      <div class="row">
+                        <div class="col">
+                          <input type="date" class="form-control" formControlName="fromDate" >
+                        </div>
+                        <div class="col">
+                          <input type="date" class="form-control pull-right" formControlName="toDate">
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="job-type-3" checked="">
-                    <label class="custom-control-label" for="job-type-3">Personal Offers</label>
+                  <div class="form-group mbot-lg">
+                    <label for="experience-description">Description de la formation</label>
+                    <textarea name="description" class="form-control" rows="3" placeholder="Saisissez une description de votre expérience"
+                              id="experience-description"
+                              data-parsley-maxlength="2000" style="height: 94px;"
+                              formControlName="job_description"></textarea>
+                  </div>
+                </form>
+                <div class="form-item-buttons row">
+                  <div class="col-md-8 form-item-buttons-main">
+                    <button class="btn btn-primary-alt btn-md" type="submit"
+                            form="schooling-form-add" id="experience-submit-button-add"
+                            data-loading-text="Enregistrement en cours..."
+                            (click)="postWorkHistory()" [disabled]="!workHistoryForm.valid">Enregistrer</button>
+                    <button (click)="isWorkVisible= !isWorkVisible" type="button" class="btn btn-ghost-default btn-md mleft" id="experience-cancel-button-add">Annuler</button>
                   </div>
                 </div>
-                <button type="button" class="btn btn-primary">Contact Us</button>
+              </div>
+              <button type="button" class="btn btn-ghost-primary-alt btn-md btn-add-item add-schooling-button"
+                      data-completion-prop="degrees" [style.display]="!isWorkVisible ? 'inline-block' : 'none'"
+                      (click)="addWorkHistory()">
+                <span aria-hidden="true" class="fa fa-plus"></span>
+                Ajouter une expérience
+              </button>
+            </div>
+            <div id="schooling-container" class="mj-block menu-target">
+              <div class="row section-title-row">
+                <div class="col-md-6">
+                  <h2 class="mj-title" id="schooling-title">Mes Formations </h2>
+                </div>
+                <div class="col-md-6 textright">
+                  <button type="button"
+                          class="btn btn-ghost-primary-alt btn-md btn-add-item add-schooling-button"
+                          id="top-add-schooling-button" style="display: none;">
+                    <span aria-hidden="true" class="fa fa-plus"></span>
+                    Ajouter une formation
+                  </button>
+                </div>
+              </div>
+
+              <ul class="list-unstyled" id="schoolings-ul">
+                <div *ngFor="let educ of educationBackground; let i = index" >
+                  <li class="schooling-li editable-block" id="schooling-li-{{educ.id}}" [style.display]="!hideEduc[educ.id] ? 'list-item' : 'none'">
+                    <div class="row">
+                      <div class="profile-col-left profile-dates">
+                        <button type="button" tabindex="0" title="" class="editable-item editable-item-schooling-dates-{{educ.id}}">{{educ.time_period.fromDate}}</button>
+                      </div>
+                      <div class="profile-col-right" style="width: 610px;">
+                        <div>
+                          <div class="schooling-actions">
+                            <form method="DELETE" id="delete-schooling-form-{{educ.id}}">
+                              <a (click)="deleteEducationBackground(educ.id)" class="fa fa-trash-o mr-2" data-toggle="tooltip" title="Supprimer"
+                                 style="cursor: pointer;" id="delete-schooling-{{educ.id}}"></a>
+                              <a (click)="hideEduc[educ.id] = !hideEduc[educ.id]" class="fa fa-pencil" data-toggle="tooltip" title="Modifier"
+                                 style="cursor: pointer;"></a>
+                            </form>
+                          </div>
+                          <div class="saved" id="schooling-saved-{{educ.id}}" [@fadeInOut] [style.display]="visibleEduc[educ.id] ? 'block' : 'none'">
+                            <span aria-hidden="true" class="fa fa-check"></span>Enregistré
+                          </div>
+                          <div class="schooling-name">
+                            <button type="button" tabindex="0" title="" class="editable-item medium" id="editable-item-schooling-name-{{educ.id}}">
+                              {{educ.institute_name}}</button>
+                          </div>
+                        </div>
+
+                        <div class="mtop-xs mbot-xs">
+                          <button type="button" tabindex="0" title="" class="editable-item" id="editable-item-schooling-school-{{educ.id}}">
+                            {{educ.degree}}</button>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div id="container-schooling-form-{{educ.id}}" class="form-item" [style.display]="hideEduc[educ.id] ? 'block' : 'none'">
+                      <form method="PUT" [formGroup]="educationBackgroundForm" id="schooling-form-{{educ.id}}" class="schooling-form" novalidate>
+                        <div class="row form-group has-success">
+                          <label for="institute-name-{{educ.id}}">Titre de la formation / du diplôme</label>
+                          <input type="text" name="institute_name" class="form-control" id="institute-name-{{educ.id}}"
+                                 formControlName="institute_name" [value]="educ.institute_name" required>
+                        </div>
+                        <div class="row form-group">
+                          <label for="schooling-degree-{{educ.id}}">Degree</label> <span class="required">*</span>
+                          <input name="degree" class="form-control" id="schooling-degree-{{educ.id}}"
+                                    formControlName="degree" [value]="educ.degree" required>
+
+                        </div>
+                        <div class="row form-group time-period" formGroupName="time_period">
+                          <label class="col-md-3 label-title">Time Period</label>
+                          <div class="col-md-9">
+                            <div class="row">
+                              <div class="col">
+                                <input type="date" [value]="educ.time_period.fromDate" class="form-control" formControlName="fromDate" >
+                              </div>
+                              <div class="col">
+                                <input type="date" [value]="educ.time_period.toDate" class="form-control pull-right" formControlName="toDate">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </form>
+                      <div class="form-item-buttons row">
+                        <div class="col-md-8 form-item-buttons-main">
+                          <button class="btn btn-primary-alt btn-md" type="submit" id="schooling-submit-button-{{educ.id}}"
+                                  (click)="updateEducationBackground(educ, educ.id)" [disabled]="!educationBackgroundForm.valid"
+                                  data-loading-text="Enregistrement en cours...">Enregistrer</button>
+                          <button (click)="hideEduc[educ.id] = !hideEduc[educ.id]" class="btn btn-ghost-default btn-md mleft" id="schooling-cancel-button-{{educ.id}}">Annuler</button>
+                        </div>
+                        <div class="col-md-4 remove-action" id="remove-schooling-{{educ.id}}">
+                          <form method="DELETE" id="remove-schooling-form-{{educ.id}}">
+                            <span aria-hidden="true" class="fa fa-trash-o"></span>
+                            <span>Supprimer</span>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </div>
+              </ul>
+
+              <div id="container-schooling-form-add" class="form-item" [style.display]="isEducVisible ? 'block' : 'none'">
+                <form method="POST" [formGroup]="educationBackgroundForm" id="schooling-form-add" class="schooling-form" novalidate>
+                  <div class="row form-group has-success">
+                    <label for="institute-name">Titre de la formation / du diplôme</label>
+                    <input type="text" name="institute_name" class="form-control" id="institute-name"
+                           formControlName="institute_name" required>
+                  </div>
+                  <div class="row form-group">
+                    <label for="schooling-degree">Diplome</label> <span class="required">*</span>
+                    <input name="degree" class="form-control" id="schooling-degree"
+                           formControlName="degree" required>
+
+                  </div>
+                  <div class="row form-group time-period" formGroupName="time_period">
+                    <label class="col-md-3 label-title">Time Period</label>
+                    <div class="col-md-9">
+                      <div class="row">
+                        <div class="col">
+                          <input type="date" class="form-control" formControlName="fromDate" >
+                        </div>
+                        <div class="col">
+                          <input type="date" class="form-control pull-right" formControlName="toDate">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <div class="form-item-buttons row">
+                  <div class="col-md-8 form-item-buttons-main">
+                    <button class="btn btn-primary-alt btn-md" type="submit"
+                            form="schooling-form-add" id="schooling-submit-button-add"
+                            data-loading-text="Enregistrement en cours..."
+                            (click)="postEducationBackground()" [disabled]="!educationBackgroundForm.valid">Enregistrer</button>
+                    <button (click)="isEducVisible = !isEducVisible" type="button" class="btn btn-ghost-default btn-md mleft" id="schooling-cancel-button-add">Annuler</button>
+                  </div>
+                </div>
+              </div>
+              <button type="button" class="btn btn-ghost-primary-alt btn-md btn-add-item add-schooling-button"
+                      data-completion-prop="degrees" [style.display]="!isEducVisible ? 'inline-block' : 'none'"
+                      (click)="addEducationBackground()">
+                <span aria-hidden="true" class="fa fa-plus"></span>
+                Ajouter une formation
+              </button>
+            </div>
+            <div id="skills-container" class="mj-block menu-target">
+              <h2 class="mj-title section-title">Mes compétences</h2>
+              <div id="wish-jobs-container">
+                <div class="editable-block" id="wish-jobs-display" [style.display]="!isSkillVisible ? 'block' : 'none'">
+                  <div class="wish-jobs-div">
+                    <div class="skills-actions">
+                      <button type="button" class="fa fa-pencil btn-xs" data-toggle="tooltip" data-original-title="Modifier"
+                              (click)="isSkillVisible = !isSkillVisible">
+                        <span class="sr-only">Modifier les postes souhaités</span>
+                      </button>
+                    </div>
+                    <div class="saved" id="wish-jobs-saved" [style.display]="visibleRes[resume.id] ? 'block' : 'none'">
+                      <span aria-hidden="true" class="fa fa-check"></span>Enregistré
+                    </div>
+
+                    <div class="row wish-jobs">
+                      <div class="profile-col-left">
+                        <span class="section-subtitle small">Domaines d'expertise :</span>
+                      </div>
+                      <div class="skill-col-container">
+                        <span *ngFor="let skill of resume.skills" class="display-tag tag-wish-job mr-2">{{skill.name}}</span>
+
+                        <button type="button" class="btn btn-ghost-primary-alt btn-sm btn-add-item add-wish-job mt-1">
+                          <span aria-hidden="true" class="fa fa-plus"></span>
+                          <span class="sr-only">Ajouter un domaine souhaité</span>
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="form-item" id="wish-jobs-form-container" [style.display]="isSkillVisible ? 'block' : 'none'">
+                  <div class="profile-col-left">
+                    <label class="small section-subtitle">Domaines d'expertise <span class="required">*</span> :</label>
+                  </div>
+                  <div class="skill-col-container">
+                    <form method="PUT" [formGroup]="skillsForm" id="wish-jobs-form" novalidate>
+                      <div class="form-group">
+<!--                        <div class="bootstrap-tagsinput form-control">-->
+<!--                          <span class="tag label label-primary">Développeur (H/F)-->
+<!--                            <a role="button" tabindex="0" data-role="remove"></a></span>-->
+<!--                          <span class="tag label label-primary">Garde d'enfants à domicile (H/F)-->
+<!--                            <a role="button" tabindex="0" data-role="remove"></a></span>-->
+<!--                          <span class="twitter-typeahead" style="position: relative; display: inline-block;">-->
+<!--                            <input type="text" aria-label="" placeholder="Ajouter un poste" class="tt-input" autocomplete="off" spellcheck="false" dir="auto" style="position: relative; vertical-align: top;">-->
+<!--                            <pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: 0px; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre>-->
+<!--                          </span>-->
+<!--                        </div>-->
+<!--                        <input type="text" id="jobs" name="jobs" class="form-control" data-placeholder="Ajouter un poste" data-placeholder-empty="Ajouter un poste" data-parsley-autocomplete=""-->
+<!--                               data-initial-value="[{&quot;jobId&quot;:843,&quot;jobLabel&quot;:&quot;Développeur (H/F)&quot;},{&quot;jobId&quot;:7555,&quot;jobLabel&quot;:&quot;Garde d'enfants à domicile (H/F)&quot;}]"-->
+<!--                               required style="display: none;">-->
+                        <tag-input theme='bootstrap' formControlName="skills" displayBy="name"></tag-input>
+                      </div>
+                      <div class="form-item-buttons row">
+                        <div class="col">
+                          <button class="btn btn-primary-alt btn-md" type="submit" data-loading-text="Enregistrement en cours..."
+                                  (click)="updateSkills(resume.id)" [disabled]="!skillsForm.valid">Enregistrer</button>
+                          <button type="button" class="btn btn-ghost-default btn-md mleft" id="cancel-button-wish-jobs"
+                                  (click)="isSkillVisible = !isSkillVisible">Annuler</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<div class="workshop shadow bg-white mb-3" *ngFor="let job of jobDetails | paginate: config">-->
+<!--  <div class="row">-->
+<!--    <div class="col-md-8">-->
+<!--      <img [src]="logo" alt="Image" style="height:20px;">-->
+<!--    </div>-->
+<!--    <div class="col-md-4">-->
+<!--      <button type="button" class="btn btn-outline-primary btn-sm ml-5">Détails</button>-->
+<!--      <button type="button" class="btn btn-outline-primary btn-sm ml-1">Postuler</button>-->
+<!--    </div>-->
+<!--  </div>-->
+
+<!--  <h3><a routerLink="/home">{{job.job_title}}</a></h3>-->
+<!--  <p>{{job.job_description}}</p>-->
+<!--  <div class="ad-meta">-->
+<!--    <div class="meta-content">-->
+<!--      <span class="dated"><a routerLink="/home"><i class="fa fa-calendar fa-sm"></i>&nbsp;<b>{{job.expiration_date}}</b></a></span>-->
+<!--    </div>-->
+<!--    <div class="user-option pull-right">-->
+<!--      <div class="col-md-2 offset-8 mt-1">-->
+<!--        <i class="icon-location-pin icons"></i>&nbsp;<u>{{job.location}}</u>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<br>-->
+<!--<div class="row pagination-wrap">-->
+<!--  <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">-->
+<!--    <span>Showing 1-4 Of {{jobDetails.length}} Jobs</span>-->
+<!--  </div>-->
+<!--  <div class="col-md-6 text-center text-md-right">-->
+<!--    <div class="custom-pagination ml-auto" >-->
+<!--      <pagination-template #p="paginationApi"-->
+<!--                           (pageChange)="pageChange($event)">-->
+<!--        <a class="prev" style="cursor: pointer;" [class.disabled]="p.isFirstPage()" *ngIf="!p.isFirstPage()" (click)="p.previous()">Prev</a>-->
+<!--        <div class="d-inline-block" *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">-->
+<!--          <a style="cursor: pointer;" (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">{{page.label}}</a>-->
+<!--          <a class="active" style="cursor: pointer;" *ngIf="p.getCurrent() === page.value">{{page.label}}</a>-->
+<!--        </div>-->
+<!--        <a class="next" style="cursor: pointer;" [class.disabled]="p.isLastPage()" *ngIf="!p.isLastPage()" (click)="p.next()">Next</a>-->
+<!--      </pagination-template>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+<!--<br>-->
+<!--<div class="card shadow">-->
+<!--  <div class="card-body">-->
+<!--    <div class="e-profile">-->
+<!--      <div class="row">-->
+<!--        <div class="col-12 col-sm-auto mb-3">-->
+<!--          <div class="mx-auto" style="width: 140px;">-->
+<!--            <div class="d-flex justify-content-center align-items-center rounded" style="height: 140px; background-color: rgb(233, 236, 239);">-->
+<!--              <span style="color: rgb(166, 168, 170); font: bold 8pt Arial;">140x140</span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="col d-flex flex-column flex-sm-row justify-content-between mb-3">-->
+<!--          <div class="text-center text-sm-left mb-2 mb-sm-0">-->
+<!--            <h4 class="pt-sm-2 pb-1 mb-0 text-nowrap">John Smith</h4>-->
+<!--            <p class="mb-0">@johnny.s</p>-->
+<!--            <div class="text-muted"><small>Last seen 2 hours ago</small></div>-->
+<!--            <div class="mt-2">-->
+<!--              <button class="btn btn-primary" type="button">-->
+<!--                <i class="fa fa-fw fa-camera"></i>-->
+<!--                <span>Change Photo</span>-->
+<!--              </button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="text-center text-sm-right">-->
+<!--            <span class="badge badge-secondary">administrator</span>-->
+<!--            <div class="text-muted"><small>Joined 09 Dec 2017</small></div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <ul class="nav nav-tabs">-->
+<!--        <li class="nav-item"><a href="" class="active nav-link">Settings</a></li>-->
+<!--      </ul>-->
+<!--      <div class="tab-content pt-3">-->
+<!--        <div class="tab-pane active">-->
+<!--          <form class="form" novalidate="">-->
+<!--            <div class="row">-->
+<!--              <div class="col">-->
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>Full Name</label>-->
+<!--                      <input class="form-control" type="text" name="name" placeholder="John Smith" value="John Smith">-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                  <div class="col">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>Username</label>-->
+<!--                      <input class="form-control" type="text" name="username" placeholder="johnny.s" value="johnny.s">-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>Email</label>-->
+<!--                      <input class="form-control" type="text" placeholder="user@example.com">-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                  <div class="col mb-3">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>About</label>-->
+<!--                      <textarea class="form-control" rows="5" placeholder="My Bio"></textarea>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--              <div class="col-12 col-sm-6 mb-3">-->
+<!--                <div class="mb-2"><b>Change Password</b></div>-->
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+<!--                    <div class="form-group">-->
+<!--                      <label for="password">Current Password</label>-->
+<!--                      <input class="form-control" type="password" id="password">-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>New Password</label>-->
+<!--                      <input class="form-control" type="password" >-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+<!--                    <div class="form-group">-->
+<!--                      <label>Confirm <span class="d-none d-xl-inline">Password</span></label>-->
+<!--                      <input class="form-control" type="password" ></div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--              <div class="col-12 col-sm-5 offset-sm-1 mb-3">-->
+<!--                <div class="mb-2"><b>Keeping in Touch</b></div>-->
+<!--                <div class="row">-->
+<!--                  <div class="col">-->
+<!--                    <label>Email Notifications</label>-->
+<!--                    <div class="custom-controls-stacked px-2">-->
+<!--                      <div class="custom-control custom-checkbox">-->
+<!--                        <input type="checkbox" class="custom-control-input" id="notifications-blog" checked="">-->
+<!--                        <label class="custom-control-label" for="notifications-blog">Blog posts</label>-->
+<!--                      </div>-->
+<!--                      <div class="custom-control custom-checkbox">-->
+<!--                        <input type="checkbox" class="custom-control-input" id="notifications-news" checked="">-->
+<!--                        <label class="custom-control-label" for="notifications-news">Newsletter</label>-->
+<!--                      </div>-->
+<!--                      <div class="custom-control custom-checkbox">-->
+<!--                        <input type="checkbox" class="custom-control-input" id="notifications-offers" checked="">-->
+<!--                        <label class="custom-control-label" for="notifications-offers">Personal Offers</label>-->
+<!--                      </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--            <div class="row">-->
+<!--              <div class="col d-flex justify-content-end">-->
+<!--                <button class="btn btn-primary" type="submit">Save Changes</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </form>-->
+
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

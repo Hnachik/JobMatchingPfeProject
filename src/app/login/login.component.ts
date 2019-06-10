@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {UserService} from '../shared/user.service';
+import {UserService} from '../shared/services/user.service';
+import {ToastrService} from 'ngx-toastr';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -10,30 +12,42 @@ import {UserService} from '../shared/user.service';
 })
 export class LoginComponent implements OnInit {
 
-  isLoginError = false;
-  isLoginSucess = false;
-  errorMsg = '';
-  constructor(private userService: UserService, private router: Router) { }
+  authenticationForm: FormGroup;
+
+  constructor(private fb:FormBuilder,
+              private userService: UserService,
+              private router: Router,
+              private toastr: ToastrService)
+  {
+    this.authenticationForm=this.fb.group({
+      username:['',[Validators.required, Validators.minLength(3)]],
+      password:['',[Validators.required, Validators.minLength(8)]],
+    })
+  }
 
   ngOnInit() {
   }
 
-  OnSubmit(username, password) {
-    this.userService.userAuthentication(username, password).subscribe((data: any) => {
-      console.log(data);
+  OnSubmit() {
+    let fields = this.authenticationForm.value;
+    this.userService.userAuthentication(fields).subscribe((data: any) => {
+        this.toastr.success('You are now Login !','Successful authentication !', {
+          timeOut: 2000});
+        console.log(data);
         localStorage.setItem('userToken', data.token);
-        this.isLoginSucess = true;
+        this.userService.editData(data);
         this.router.navigate(['/home']);
       },
       (err: HttpErrorResponse) => {
+        this.toastr.error('Please check your username or password !','Unsuccessful authentication !', {
+          timeOut: 3000});
+        this.authenticationForm.reset();
         console.log(err);
-        this.errorMsg = '';
-        this.isLoginError = true;
       });
   }
 
   getUrl() {
-    return 'url(https://images6.alphacoders.com/386/386231.jpg)';
+    return 'url(https://vivoenunmundodelocos.files.wordpress.com/2017/04/estudiando1.jpg)';
   }
 
 }

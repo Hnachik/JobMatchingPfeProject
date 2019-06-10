@@ -1,0 +1,290 @@
+
+
+<section class="section-hero overlay inner-page bg-image" [ngStyle]="{'background-image': getUrl()}" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">Post Your resume</h1>
+        <div class="custom-breadcrumbs">
+          <a href="#">Home</a> <span class="mx-2 slash">/</span>
+          <a href="#">Job</a> <span class="mx-2 slash">/</span>
+          <span class="text-white"><strong>Resume</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="site-section bg-light">
+  <div class="container">
+
+
+    <div class="row mb-5">
+      <div class="col-lg-12">
+
+        <form novalidate [formGroup]="postResumeForm" class="p-4 p-md-5 border-success shadow bg-white rounded" method="post">
+          <fieldset>
+            <router-outlet>
+              <span *ngIf="showLoader" class="loading">Loading...</span>
+            </router-outlet>
+            <h3 class="text-black mb-5 border-bottom pb-2">Identity Details</h3>
+            <div class="section express-yourself">
+              <div class="row form-group">
+                <label class="col-sm-4 label-title" for="ResumeTitleId">Resume Title <span style="color:red">*</span></label>
+                <!-- [ngClass]="{'has-error': postResumeForm.get('fullName').touched || postResumeForm.get('fullName').dirty) && !postResumeForm.get('fullName').valid }" -->
+                <div class="col-sm-8">
+                  <input type="text" formControlName="resume_title" id="ResumeTitleId" class="form-control" placeholder="Enter your current post">
+                  <span class="help-block" style="color:red" *ngIf="(postResumeForm.get('resume_title').touched || postResumeForm.get('resume_title').dirty)
+                    && postResumeForm.get('resume_title').errors">
+                         <span class="small" *ngIf="postResumeForm.get('resume_title').errors.required">
+                             Please Enter Your Current Post.
+                         </span>
+                  </span>
+                </div>
+              </div>
+              <div class="row form-group">
+                <label class="col-sm-4 label-title">Experience Level <span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                  <select class="selectpicker border rounded" data-style="btn-black" data-width="100%" data-live-search="true"
+                          title="Select Experience Level" formControlName="experience_level">
+                    <option value="Débutant à 1 an">Débutant à 1 an</option>
+                    <option value="1-2 ans" selected="selected">1-2 ans</option>
+                    <option value="3-5 ans">3-5 ans</option>
+                    <option value="6-10 ans">6-10 ans</option>
+                    <option value="11-20 ans">11-20 ans</option>
+                    <option value="21 ans et plus">21 ans et plus</option>
+                  </select>
+                  <span class="help-block" style="color:red"
+                        *ngIf="(postResumeForm.controls.experience_level.touched
+                      || postResumeForm.controls.experience_level.dirty)
+                      && postResumeForm.controls.experience_level.errors">
+                           <span class="small" *ngIf="postResumeForm.controls.experience_level.errors.required">
+                            Please Enter an Experience Level
+                           </span>
+                       </span>
+                </div>
+              </div>
+              <div class="row form-group additional-information">
+                <label class="col-sm-4 label-title" for="cobjectiveId">Carrier Objective <span style="color:red">*</span></label>
+                <div class="col-sm-8">
+                  <textarea class="form-control" formControlName="carrier_objective" id="cobjectiveId"></textarea>
+                  <span class="help-block" style="color:red" *ngIf="(postResumeForm.get('carrier_objective').touched || postResumeForm.get('carrier_objective').dirty)
+                    && postResumeForm.get('carrier_objective').errors">
+                  <span class="small" *ngIf="postResumeForm.get('carrier_objective').errors.required">
+                             Please enter your career-objective.</span>
+                  <span class="small" *ngIf="postResumeForm.get('carrier_objective').errors.minlength">
+                             The career-objective must be longer than 10 characters.</span>
+                </span>
+                </div>
+              </div>
+            </div>
+            <!-- identityDetails -->
+
+            <h3 class="text-black mb-5 border-bottom pb-2">Work History</h3>
+            <div class="section">
+              <div formArrayName="work_history" *ngFor="let whistory of work_history.controls; let i=index">
+                <div [formGroupName]="i">
+                  <!-- <app-work-histry [group]="postResumeForm.controls.work_history.controls[i]" ></app-work-histry> -->
+                  <div class="row form-group">
+                    <label class="col-sm-3 label-title" >Company Name</label>
+                    <div class="col-sm-9">
+                      <input type="text" id="{{'Cname' + i}}" class="form-control" placeholder="Name" formControlName="company_name">
+                      <span class="help-block" style="color:red"
+                            *ngIf="(postResumeForm.controls.work_history.controls[i].controls.company_name.touched
+                      || postResumeForm.controls.work_history.controls[i].controls.company_name.dirty)
+                      && postResumeForm.controls.work_history.controls[i].controls.company_name.errors">
+                           <span *ngIf="postResumeForm.controls.work_history.controls[i].controls.company_name.errors.required">
+                               Please enter your Company Name.
+                           </span>
+                       </span>
+                    </div>
+                  </div>
+                  <div class="row form-group">
+                    <label class="col-sm-3 label-title" >Designation</label>
+                    <div class="col-sm-9">
+                      <input type="text" id="{{'designatiion' + i}}" class="form-control" placeholder="Human Resource Manager" formControlName="designation">
+                      <span class="help-block" style="color:red"
+                            *ngIf="(postResumeForm.controls.work_history.controls[i].controls.designation.touched
+                      || postResumeForm.controls.work_history.controls[i].controls.designation.dirty)
+                      && postResumeForm.controls.work_history.controls[i].controls.designation.errors">
+                           <span *ngIf="postResumeForm.controls.work_history.controls[i].controls.designation.errors.required">
+                               Please enter your Designation.
+                           </span>
+                       </span>
+                    </div>
+                  </div>
+                  <div class="row form-group time-period" formGroupName="time_period">
+                      <label class="col-md-3 label-title">Time Period</label>
+                      <div class="col-md-9">
+                        <div class="row">
+                          <div class="col">
+                            <!--<input class="form-control" bsDatepicker [bsConfig]="DueDatePicker" formControlName="fromDate"  placeholder="26/01/1982">&ndash;&gt;-->
+                            <input type="date" class="form-control" id="work-fromdate" formControlName="fromDate" >
+                            <span  style="color:red"
+                                   *ngIf="(postResumeForm.controls.work_history.controls[i].controls.time_period.controls.fromDate.touched
+                        || postResumeForm.controls.work_history.controls[i].controls.time_period.controls.fromDate.dirty)
+                        && postResumeForm.controls.work_history.controls[i].controls.time_period.controls.fromDate.errors">
+                              <span *ngIf="postResumeForm.controls.work_history.controls[i].controls.time_period.controls.fromDate.errors.required">
+                                 Please enter from Date.</span>
+                            </span>
+                          </div>
+                          <div class="col">
+                            <!--<input class="form-control" bsDatepicker [bsConfig]="DueDatePicker" formControlName="toDate"  placeholder="26/01/1982">&ndash;&gt;-->
+                            <input type="date"  class="form-control pull-right" id="work-todate" formControlName="toDate">
+                            <span  style="color:red"
+                                   *ngIf="(postResumeForm.controls.work_history.controls[i].controls.time_period.controls.toDate.touched
+                         || postResumeForm.controls.work_history.controls[i].controls.time_period.controls.toDate.dirty)
+                         && postResumeForm.controls.work_history.controls[i].controls.time_period.controls.toDate.errors">
+                              <span *ngIf="postResumeForm.controls.work_history.controls[i].controls.time_period.controls.toDate.errors.required">
+                                  Please enter To Date.</span>
+                            </span>
+                            <span style="color:red" *ngIf="postResumeForm.controls.work_history.controls[i].controls.time_period.errors
+                          &&  (postResumeForm.controls.work_history.value[i].time_period.fromDate && postResumeForm.controls.work_history.value[i].time_period.toDate)">
+                            {{ postResumeForm.controls.work_history.controls[i].controls.time_period.errors?.daterange }}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                  </div>
+                  <div class="row form-group job-description">
+                    <label class="col-sm-3 label-title" >Job Description</label>
+                    <div class="col-sm-9">
+                      <textarea class="form-control" placeholder="" rows="8" id="{{'job_description' + i}}" formControlName="job_description"></textarea>
+                      <span class="help-block" style="color:red"
+                            *ngIf="(postResumeForm.controls.work_history.controls[i].controls.job_description.touched
+                      || postResumeForm.controls.work_history.controls[i].controls.job_description.dirty)
+                      && postResumeForm.controls.work_history.controls[i].controls.job_description.errors">
+                           <span *ngIf="postResumeForm.controls.work_history.controls[i].controls.job_description.errors.required">
+                               Please enter your Job Description.
+                           </span>
+                       </span>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="row form-group">
+                  <div class="col-xs-12 text-right">
+                    <button *ngIf="postResumeForm.controls.work_history.controls.length > 1"
+                            (click)="deleteWorkHistory(i)" class="btn btn-danger">Delete</button>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+              <div class="buttons pull-right offset-10">
+                <button class="btn btn-outline-info" (click)="addWorkHistory()">Add New Exprience</button>
+              </div>
+              <br><br>
+            </div>
+
+            <!-- work-history -->
+
+            <h3 class="text-black mb-5 border-bottom pb-2">Education Background</h3>
+            <div class="section education-background">
+              <div formArrayName="education_background" *ngFor="let eBackGround of education_background.controls; let i=index">
+                <div [formGroupName]="i">
+                  <div class="row form-group">
+                    <label class="col-sm-3 label-title">Institute Name</label>
+                    <div class="col-sm-9">
+                      <input type="text"  class="form-control" id="{{'iname' + i}}" placeholder="ropbox" formControlName="institute_name">
+                      <span class="help-block" style="color:red"
+                            *ngIf="(postResumeForm.controls.education_background.controls[i].controls.institute_name.touched
+                    || postResumeForm.controls.education_background.controls[i].controls.institute_name.dirty)
+                    && postResumeForm.controls.education_background.controls[i].controls.institute_name.errors">
+                         <span *ngIf="postResumeForm.controls.education_background.controls[i].controls.institute_name.errors.required">
+                             Please enter your Institute Name.
+                         </span>
+                     </span>
+                    </div>
+                  </div>
+                  <div class="row form-group">
+                    <label class="col-sm-3 label-title">Degree</label>
+                    <div class="col-sm-9">
+                      <input type="text"  class="form-control" placeholder="Human Resource Manager" id="{{'degree' + i}}"
+                             formControlName="degree">
+                      <span class="help-block" style="color:red"
+                            *ngIf="(postResumeForm.controls.education_background.controls[i].controls.degree.touched
+                     || postResumeForm.controls.education_background.controls[i].controls.degree.dirty)
+                     && postResumeForm.controls.education_background.controls[i].controls.degree.errors">
+                          <span *ngIf="postResumeForm.controls.education_background.controls[i].controls.degree.errors.required">
+                              Please enter your Degree.
+                          </span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="row form-group time-period" formGroupName="time_period">
+                    <label class="col-md-3 label-title">Time Period</label>
+                    <div class="col-md-9">
+                      <div class="row">
+                        <div class="col">
+                          <!--<input class="form-control" bsDatepicker [bsConfig]="DueDatePicker" formControlName="fromDate"  placeholder="26/01/1982">&ndash;&gt;-->
+                          <input type="date" class="form-control" id="education-fromdate" formControlName="fromDate" >
+                          <span  style="color:red"
+                                 *ngIf="(postResumeForm.controls.education_background.controls[i].controls.time_period.controls.fromDate.touched
+                        || postResumeForm.controls.education_background.controls[i].controls.time_period.controls.fromDate.dirty)
+                        && postResumeForm.controls.education_background.controls[i].controls.time_period.controls.fromDate.errors">
+                              <span *ngIf="postResumeForm.controls.education_background.controls[i].controls.time_period.controls.fromDate.errors.required">
+                                 Please enter from Date.</span>
+                            </span>
+                        </div>
+                        <div class="col">
+                          <!--<input class="form-control" bsDatepicker [bsConfig]="DueDatePicker" formControlName="toDate"  placeholder="26/01/1982">&ndash;&gt;-->
+                          <input type="date"  class="form-control pull-right" id="education-todate" formControlName="toDate">
+                          <span  style="color:red"
+                                 *ngIf="(postResumeForm.controls.education_background.controls[i].controls.time_period.controls.toDate.touched
+                         || postResumeForm.controls.education_background.controls[i].controls.time_period.controls.toDate.dirty)
+                         && postResumeForm.controls.education_background.controls[i].controls.time_period.controls.toDate.errors">
+                              <span *ngIf="postResumeForm.controls.education_background.controls[i].controls.time_period.controls.toDate.errors.required">
+                                  Please enter To Date.</span>
+                            </span>
+                          <span style="color:red" *ngIf="postResumeForm.controls.education_background.controls[i].controls.time_period.errors
+                          &&  (postResumeForm.controls.education_background.value[i].time_period.fromDate && postResumeForm.controls.work_history.value[i].time_period.toDate)">
+                            {{ postResumeForm.controls.education_background.controls[i].controls.time_period.errors?.daterange }}
+                            </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-xs-12 text-right">
+                    <button *ngIf="postResumeForm.controls.education_background.controls.length > 1"
+                            (click)="deleteEducationBackground(i)" class="btn btn-danger">Delete</button>
+                    <hr>
+                  </div>
+                </div>
+              </div>
+              <div class="buttons pull-right offset-10">
+                <button class="btn btn-outline-info" (click)="addEducationBackground()">Add New Education</button>
+              </div>
+              <br><br>
+            </div>
+            <!-- education-background -->
+
+            <h3 class="text-black mb-5 border-bottom pb-2">Special Qualifications</h3>
+            <div class="section special-qualification">
+              <tag-input formControlName="skills" theme='dark' displayBy="name" ></tag-input>
+            </div>
+            <br>
+            <!-- special-qualification -->
+
+            <div class="row align-items-center mb-5">
+              <div class="col-lg-4 offset-8">
+                <div class="row">
+                  <div class="col-6">
+                    <button (click)="clear()" class="btn btn-block btn-light btn-md" >
+                      <span class="icon-open_in_new mr-2"></span>Reset</button>
+                  </div>
+
+                  <div class="col-6">
+                    <button (click)="save()" class="btn btn-block btn-primary btn-md" [disabled]="!postResumeForm.valid">Save Resume</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

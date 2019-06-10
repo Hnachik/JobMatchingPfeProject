@@ -19,76 +19,62 @@
         <div class="col-md-8">
           <div class="card mx-2">
             <div class="card-block p-4 shadow-lg" >
-              <h1 class="text-center">Accès Recruteur</h1>
+              <h1 class="text-center">Accès Candidat</h1>
               <h5 class="text-muted text-center">Recruter sur TalentHunter</h5>
               <br>
               <form #userRegistrationForm="ngForm" (ngSubmit)="OnSubmit(userRegistrationForm)">
 
                 <div class="form-group">
                   <label class="text-dark">Username</label>
-                  <input type="text" name="username" #username="ngModel" [(ngModel)]="recruiter.user.username" class="form-control"
+                  <input type="text" name="username" #username="ngModel" [(ngModel)]="jobseeker.user.username" class="form-control"
                          placeholder="Username" required>
                 </div>
 
                 <div class="form-group">
                   <label class="text-dark">Email address</label>
-                  <input type="text" name="email" #email="ngModel" [(ngModel)]="recruiter.user.email" [pattern]="emailPattern" class="form-control"
+                  <input type="text" name="email" #email="ngModel" [(ngModel)]="jobseeker.user.email" [pattern]="emailPattern" class="form-control"
                          placeholder="Email" required>
                 </div>
 
                 <div class="form-group">
                   <label class="text-dark">Password</label>
-                  <input type="password" name="password" #password="ngModel" [(ngModel)]="recruiter.user.password" class="form-control"
+                  <input type="password" name="password" #password="ngModel" [(ngModel)]="jobseeker.user.password" class="form-control"
                          placeholder="Password" required minlength="8">
                 </div>
 
-                <div class="form-group">
-                  <label class="text-dark">Company Name</label>
-                  <input type="text" name="company_name" #company_name="ngModel" [(ngModel)]="recruiter.company_name" class="form-control"
-                         placeholder="Name" required>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="text-dark">First name</label>
+                      <input type="text" name="first_name" #first_name="ngModel" [(ngModel)]="jobseeker.first_name" class="form-control"
+                             placeholder="First name" required>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="form-group">
+                      <label class="text-dark">Last name</label>
+                      <input name="last_name" #last_name="ngModel" [(ngModel)]="jobseeker.last_name"
+                                class="form-control" placeholder="Last name" required >
+                    </div>
+                  </div>
                 </div>
 
                 <div class="form-group">
-                  <label class="text-dark">Company Details</label>
-                  <textarea name="company_description" #company_description="ngModel" [(ngModel)]="recruiter.company_description"
-                            class="form-control" placeholder="Description" required style="height:120px;"></textarea>
+                  <label class="text-dark">Phone number</label>
+                  <input name="phone_number" #phone_number="ngModel" [(ngModel)]="jobseeker.phone_number" class="form-control"
+                         placeholder="Phone +(216)" required>
                 </div>
 
                 <div class="form-group">
-                  <label class="text-dark">Company Logo</label>
-                  <input type="url" name="company_logo" #company_logo="ngModel" [(ngModel)]="recruiter.company_logo" class="form-control"
-                         placeholder="Logo" required>
+                  <label class="text-dark">Address</label>
+                  <input name="address" #address="ngModel" [(ngModel)]="jobseeker.address" class="form-control"
+                         placeholder="location" required>
                 </div>
 
                 <div class="form-group">
-                  <label class="text-dark" for="exampleSelectPrimary">Location</label>
-                  <select name="address" #address="ngModel" [(ngModel)]="recruiter.address" class="form-control border-success" id="exampleSelectPrimary">
-                    <option value="Governorate">Governorate</option>
-                    <option value="Ariana">Ariana</option>
-                    <option value="Béja">Béja</option>
-                    <option value="Ben Arous">Ben Arous</option>
-                    <option value="Bizerte">Bizerte</option>
-                    <option value="Gabès">Gabès</option>
-                    <option value="Gafsa">Gafsa</option>
-                    <option value="Jendouba">Jendouba</option>
-                    <option value="Kairouan">Kairouan</option>
-                    <option value="Kasserine">Kasserine</option>
-                    <option value="Kélibia">Kélibia</option>
-                    <option value="Le Kef">Le Kef</option>
-                    <option value="Mahdia">Mahdia</option>
-                    <option value="La Manouba">La Manouba</option>
-                    <option value="Médenine">Médenine</option>
-                    <option value="Monastir">Monastir</option>
-                    <option value="Nabeul">Nabeul</option>
-                    <option value="Sfax">Sfax</option>
-                    <option value="Sidi Bouzid">Sidi Bouzid</option>
-                    <option value="Siliana">Siliana</option>
-                    <option value="Sousse">Sousse</option>
-                    <option value="Tataouine">Tataouine</option>
-                    <option value="Tozeur">Tozeur</option>
-                    <option value="Tunis">Tunis</option>
-                    <option value="Zaghouan">Zaghouan</option>
-                  </select>
+                  <label class="text-dark">About</label>
+                  <textarea name="about" #about="ngModel" [(ngModel)]="jobseeker.about" class="form-control h-100"
+                            placeholder="about" required ></textarea>
                 </div>
 
                 <button [disabled]="!userRegistrationForm.valid" class="btn btn-primary border-width-2 d-none d-lg-inline-block" type="submit">Submit</button>

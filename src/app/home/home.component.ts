@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../shared/user.service';
-import {Router} from '@angular/router';
+import {RecruiterService} from '../shared/services/recruiter.service';
+import {JobPostModel} from '../shared/models/recruiter.model';
+import {map} from 'rxjs/operators';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,25 +10,40 @@ import {Router} from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  config: any;
 
-  userClaims: any;
+  posts: JobPostModel[] = [];
+  constructor(private recruiterService: RecruiterService,private route: ActivatedRoute,
+              private router: Router) {
+    this.config = {
+      currentPage: 1,
+      itemsPerPage: 4
+    };
 
-  constructor(private router: Router, private userService: UserService) { }
-
-  ngOnInit() {
-    this.userService.getUserClaims().subscribe((data: any) => {
-      console.log(data);
-      this.userClaims = data;
-    });
+    this.route.queryParamMap
+      .pipe(map(params => params.get('page')))
+      .subscribe(page => this.config.currentPage = page);
   }
 
-  Logout() {
-    localStorage.removeItem('userToken');
-    this.router.navigate(['/login']);
+  pageChange(newPage: number) {
+    this.router.navigate(['/home'], {queryParams: {page: newPage}});
+  }
+
+  ngOnInit() {
+    this.recruiterService.getAllJobs().subscribe( resp =>{
+      this.posts = resp
+    })
+  }
+
+  viewDetailPost(id: number) {
+    this.router.navigate(['/job-single'], {queryParams: {id: id}});
+    this.recruiterService.getAllDetailJobs(id).subscribe( resp =>{
+      this.recruiterService.editData(resp);
+    })
   }
 
   getUrl() {
-    return 'url(https://images6.alphacoders.com/386/386231.jpg)';
+    return 'url(https://vivoenunmundodelocos.files.wordpress.com/2017/04/estudiando1.jpg)';
   }
 
 }

@@ -15,145 +15,121 @@
 </section>
 
 
-<section class="site-section">
+<section class="site-section bg-light">
   <div class="container">
 
-    <div class="row align-items-center mb-5">
-      <div class="col-lg-8 mb-4 mb-lg-0">
-        <div class="d-flex align-items-center">
-          <div>
-            <h2>Post A Job</h2>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4">
-        <div class="row">
-          <div class="col-6">
-            <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
-          </div>
-          <div class="col-6">
-            <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="row mb-5">
       <div class="col-lg-12">
-        <form class="p-4 p-md-5 border rounded" method="post">
+        <form novalidate class="p-4 p-md-5 border-success bg-white shadow rounded" method="post"
+              [formGroup]="jobRegistrationForm">
           <h3 class="text-black mb-5 border-bottom pb-2">Job Details</h3>
 
           <div class="form-group">
-            <label for="company-website-tw d-block">Upload Featured Image</label> <br>
-            <label class="btn btn-primary btn-md btn-file">
-              Browse File<input type="file" hidden>
-            </label>
+            <label for="jobTitleId">Job Title <span style="color:red">*</span></label>
+            <input type="text" formControlName="job_title" id="jobTitleId" class="form-control" placeholder="Product Designer">
+            <span class="help-block" style="color:red"
+                    *ngIf="(jobRegistrationForm.get('job_title').touched || jobRegistrationForm.get('job_title').dirty)
+                    && jobRegistrationForm.get('job_title').errors">
+              <span class="small" *ngIf="jobRegistrationForm.get('job_title').errors.required">
+                             Please Enter a Job Title.</span>
+              <span class="small" *ngIf="jobRegistrationForm.get('job_title').errors.minlength">
+                             The Job Title must be longer than 3 characters.</span>
+            </span>
           </div>
 
           <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" placeholder="you@yourdomain.com">
-          </div>
-          <div class="form-group">
-            <label for="job-title">Job Title</label>
-            <input type="text" class="form-control" id="job-title" placeholder="Product Designer">
-          </div>
-          <div class="form-group">
-            <label for="job-location">Location</label>
-            <input type="text" class="form-control" id="job-location" placeholder="e.g. New York">
+            <label for="locationId">Location <span style="color:red">*</span></label>
+            <input type="text" formControlName="location" id="locationId" class="form-control" placeholder="Tunis">
+            <span class="help-block" style="color:red"
+                  *ngIf="(jobRegistrationForm.get('location').touched || jobRegistrationForm.get('location').dirty)
+                    && jobRegistrationForm.get('location').errors">
+              <span class="small" *ngIf="jobRegistrationForm.get('location').errors.required">
+                             Please Enter a Location.</span>
+            </span>
           </div>
 
           <div class="form-group">
-            <label for="job-region">Job Region</label>
-            <select class="selectpicker border rounded" id="job-region" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Region">
-              <option>Anywhere</option>
-              <option>San Francisco</option>
-              <option>Palo Alto</option>
-              <option>New York</option>
-              <option>Manhattan</option>
-              <option>Ontario</option>
-              <option>Toronto</option>
-              <option>Kansas</option>
-              <option>Mountain View</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="job-type">Job Type</label>
-            <select class="selectpicker border rounded" id="job-type" data-style="btn-black" data-width="100%" data-live-search="true" title="Select Job Type">
+            <label for="jobTypeId">Job Type</label>
+            <select class="selectpicker border rounded" id="jobTypeId" data-style="btn-black" data-width="100%" data-live-search="true"
+                    title="Select Job Type" name="job_type" formControlName="job_type">
               <option>Part Time</option>
               <option>Full Time</option>
             </select>
           </div>
 
+          <div class="form-group">
+            <label for="jobDescriptionId">Job Description <span style="color:red">*</span></label>
+            <textarea name="job_description" class="form-control" id="jobDescriptionId" style="height: 200px;"
+                      formControlName="job_description" ></textarea>
+            <span class="help-block" style="color:red"
+                  *ngIf="(jobRegistrationForm.get('job_description').touched || jobRegistrationForm.get('job_description').dirty)
+                    && jobRegistrationForm.get('job_description').errors">
+              <span class="small" *ngIf="jobRegistrationForm.get('job_description').errors.required">
+                             Please Enter a Job Description</span>
+            </span>
+          </div>
 
           <div class="form-group">
-            <label for="job-description">Job Description</label>
-            <div class="editor" id="editor-1">
-              <p>Write Job Description!</p>
+            <label for="jobRequirementsId">Job Requirements <span style="color:red">*</span></label>
+            <textarea name="job_requirements" class="form-control" id="jobRequirementsId" style="height: 200px;"
+                      formControlName="job_requirements" ></textarea>
+            <span class="help-block" style="color:red"
+                  *ngIf="(jobRegistrationForm.get('job_requirements').touched || jobRegistrationForm.get('job_requirements').dirty)
+                    && jobRegistrationForm.get('job_requirements').errors">
+              <span class="small" *ngIf="jobRegistrationForm.get('job_requirements').errors.required">
+                             Please Enter Some Job Requirements</span>
+            </span>
+          </div>
+
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <label>Publication Date</label>
+                <input class="form-control" type="date" name="publication_date"
+                       formControlName="publication_date" >
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <label>Expiration Date</label>
+                <input class="form-control" type="date" name="expiration_date"
+                       formControlName="expiration_date">
+              </div>
             </div>
           </div>
 
-
-          <h3 class="text-black my-5 border-bottom pb-2">Company Details</h3>
           <div class="form-group">
-            <label for="company-name">Company Name</label>
-            <input type="text" class="form-control" id="company-name" placeholder="e.g. New York">
+            <label for="postUrlId">Post Url <span style="color:red">*</span></label>
+            <input type="text" formControlName="post_url" id="postUrlId" class="form-control" >
+            <span class="help-block" style="color:red"
+                  *ngIf="(jobRegistrationForm.get('post_url').touched || jobRegistrationForm.get('post_url').dirty)
+                    && jobRegistrationForm.get('post_url').errors">
+              <span class="small" *ngIf="jobRegistrationForm.get('post_url').errors.required">
+                             Please Enter a Post Url.</span>
+            </span>
           </div>
 
+          <h3 class="text-black my-5 border-bottom pb-2">Job Categories</h3>
           <div class="form-group">
-            <label for="company-tagline">Tagline (Optional)</label>
-            <input type="text" class="form-control" id="company-tagline" placeholder="e.g. New York">
+            <label>Activity Area</label>
+            <tag-input formControlName="category_set" theme='dark' displayBy="category_name"></tag-input>
           </div>
+          <br>
 
-          <div class="form-group">
-            <label for="job-description">Company Description (Optional)</label>
-            <div class="editor" id="editor-2">
-              <p>Description</p>
+          <div class="row align-items-center mb-5">
+            <div class="col-lg-4 offset-8">
+              <div class="row">
+                <div class="col-6">
+                  <button (click)="clear()" class="btn btn-block btn-light btn-md" >
+                    <span class="icon-open_in_new mr-2"></span>Reset</button>
+                </div>
+                <div class="col-6">
+                  <button (click)="save()" class="btn btn-block btn-primary btn-md" [disabled]="!jobRegistrationForm.valid">Save Post</button>
+                </div>
+              </div>
             </div>
           </div>
-
-          <div class="form-group">
-            <label for="company-website">Website (Optional)</label>
-            <input type="text" class="form-control" id="company-website" placeholder="https://">
-          </div>
-
-          <div class="form-group">
-            <label for="company-website-fb">Facebook Username (Optional)</label>
-            <input type="text" class="form-control" id="company-website-fb" placeholder="companyname">
-          </div>
-
-          <div class="form-group">
-            <label for="company-website-tw">Twitter Username (Optional)</label>
-            <input type="text" class="form-control" id="company-website-tw" placeholder="@companyname">
-          </div>
-          <div class="form-group">
-            <label for="company-website-tw">Linkedin Username (Optional)</label>
-            <input type="text" class="form-control" id="company-website-tw" placeholder="companyname">
-          </div>
-
-          <div class="form-group">
-            <label for="company-website-tw d-block">Upload Logo</label> <br>
-            <label class="btn btn-primary btn-md btn-file">
-              Browse File<input type="file" hidden>
-            </label>
-          </div>
-
         </form>
-      </div>
-
-
-    </div>
-    <div class="row align-items-center mb-5">
-
-      <div class="col-lg-4 ml-auto">
-        <div class="row">
-          <div class="col-6">
-            <a href="#" class="btn btn-block btn-light btn-md"><span class="icon-open_in_new mr-2"></span>Preview</a>
-          </div>
-          <div class="col-6">
-            <a href="#" class="btn btn-block btn-primary btn-md">Save Job</a>
-          </div>
-        </div>
       </div>
     </div>
   </div>

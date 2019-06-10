@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../shared/user.model';
-import {Recruiter} from '../shared/recruiter.model';
-import {UserService} from '../shared/user.service';
+import {User} from '../shared/models/user.model';
+import {Recruiter} from '../shared/models/recruiter.model';
+import {UserService} from '../shared/services/user.service';
 import {Router} from '@angular/router';
 import {NgForm} from '@angular/forms';
 import {HttpErrorResponse} from '@angular/common/http';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-signup-recruiter',
@@ -17,7 +18,7 @@ export class SignupRecruiterComponent implements OnInit {
   recruiter: Recruiter;
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
 
-  constructor(private userService: UserService, private router: Router) { }
+  constructor(private userService: UserService, private router: Router, private  toastr: ToastrService) { }
 
   ngOnInit() {
     this.resetForm()
@@ -41,18 +42,23 @@ export class SignupRecruiterComponent implements OnInit {
   }
 
   getUrl() {
-    return "url(src/assets/img/10.jpg)";
+    return "url(https://vivoenunmundodelocos.files.wordpress.com/2017/04/estudiando1.jpg)";
   }
 
   OnSubmit(form: NgForm) {
     console.log(this.recruiter);
-    this.userService.registerUser(this.recruiter)
+    this.userService.registerRecruiter(this.recruiter)
       .subscribe((data: any) => {
         console.log(data);
         if (data.token) {
+          this.toastr.success('You are now registered as a recruiter!','Successful Registration !', {
+            timeOut: 2000});
           this.resetForm(form);
           this.router.navigate(['/login']);}
         }, (err: HttpErrorResponse) => {
+          this.toastr.error('Please Try again','Registration Failed !', {
+            timeOut: 2000});
+          this.resetForm(form);
           console.log(err);
         }
       );

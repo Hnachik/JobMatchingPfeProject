@@ -1,0 +1,105 @@
+.workshop {
+  border: 1px solid #f3f3f3;
+  padding: 25px 25px 70px;
+  position: relative;
+}
+
+.workshop h3 {
+  margin: 10px 0 5px;
+}
+
+.workshop h3 a {
+  font-size: 20px;
+  font-weight: 500;
+  color: #000;
+}
+
+.workshop-traning .workshop h3 a:hover {
+  color: #00a651;
+}
+
+.workshop-traning .workshop h4 {
+  font-size: 16px;
+  color: #000;
+  margin:0 0 15px;
+}
+
+.workshop-traning .workshop-price h5 {
+  color: #a0a0a0;
+  font-size: 14px;
+  margin-bottom: 0;
+  line-height: 13px;
+}
+
+.tooltip {
+  display: block;
+  width: 22%;
+}
+
+.ad-meta .user-option a {
+  background-color: #f1f1f1;
+  border-left: 1px solid #eeeeee;
+}
+
+.ad-meta .user-option a:hover {
+  background-color: transparent;
+}
+
+.ad-meta {
+  background-color: #f6f6f6;
+  border-top: 1px solid #eeeeee;
+  min-height: 35px;
+  position: absolute;
+  bottom: 0;
+  right:-1px;
+  width:100%;
+  padding-left:25px;
+  display:table;
+  font-size:14px;
+}
+
+.ad-meta .meta-content {
+  display:table-cell;
+  vertical-align:middle;
+}
+
+.ad-meta .meta-content .dated {
+  margin-right:20px;
+}
+
+.ad-meta .meta-content .dated,
+.ad-meta .meta-content .visitors {
+  font-weight:500;
+  color:#9fa4a4;
+}
+
+.ad-meta .meta-content span,
+.ad-meta .meta-content a {
+  font-weight:400;
+  color: #9fa4a4;
+}
+
+.ad-meta .meta-content a:hover {
+  color: #00a651;
+}
+
+.ad-meta .user-option a{
+  font-size: 18px;
+  color: #9fa4a4;
+  display:inline-block;
+  width: 40px;
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+}
+
+.icon-location-arrow:before {
+  content: "\f124";
+}
+
+.resume-content .icons {
+  color: #00a651;
+  font-size: 30px;
+  float: left;
+  margin-right: 30px;
+}

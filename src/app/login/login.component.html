@@ -23,32 +23,40 @@
               <div class="card-block">
                 <h1>Login</h1>
                 <p class="text-muted">S'authentifier à votre compte</p>
-                <form #loginForm="ngForm" (ngSubmit)="OnSubmit(username.value, password.value)">
+                <form [formGroup]="authenticationForm" >
 
                   <div class="input-group mb-2">
                     <span class="input-group-append mt-2"><i class="icon-user"></i></span>
-                    <input type="text" #username ngModel name="username" class="form-control rounded-pill ml-2" placeholder="Username" required>
+                    <input formControlName="username" type="text" name="username" class="form-control rounded-pill ml-2" 
+                           placeholder="Username" >
+                    <span class="help-block" style="color:red"
+                          *ngIf="(authenticationForm.get('username').touched || authenticationForm.get('username').dirty)
+                    && authenticationForm.get('username').errors">
+                      <span class="small" *ngIf="authenticationForm.get('username').errors.required">
+                             Please enter your username.</span>
+                      <span class="small" *ngIf="authenticationForm.get('username').errors.minlength">
+                             Username must be longer than 3 characters.</span>
+                    </span>
                   </div>
 
                   <div class="input-group mb-2">
                     <span class="input-group-append mt-2"><i class="icon-lock"></i></span>
-                    <input type="password" #password ngModel name="password" class="form-control rounded-pill ml-2" placeholder="Password" required>
+                    <input type="password" name="password" class="form-control rounded-pill ml-2" placeholder="Password"
+                           formControlName="password">
+                    <span class="help-block" style="color:red"
+                          *ngIf="(authenticationForm.get('password').touched || authenticationForm.get('password').dirty)
+                    && authenticationForm.get('password').errors">
+                      <span class="small" *ngIf="authenticationForm.get('password').errors.required">
+                             Please enter a password.</span>
+                      <span class="small" *ngIf="authenticationForm.get('password').errors.minlength">
+                             Password must be longer than 3 characters.</span>
+                    </span>
                   </div>
 
-                  <div *ngIf="isLoginSucess" class="alert alert-success" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Success!</strong> Inscription réussie !
-                  </div>
-
-                  <div *ngIf="isLoginError" class="alert alert-warning" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <strong>Erreur!</strong> Inscription non réussie !
-                  </div>
-
-                  <span style="color: red">{{errorMsg}}</span>
                   <div class="row">
                     <div class="col-6">
-                      <button type="submit" [disabled]="!loginForm.valid" class="btn btn-outline-primary mt-2 px-2">S'authentifier</button>
+                      <button [disabled]="!authenticationForm.valid"
+                              class="btn btn-outline-primary mt-2 px-2" (click)="OnSubmit()">S'authentifier</button>
                     </div>
                   </div>
                 </form>
@@ -63,7 +71,7 @@
                           [routerLink]="['/signup-jobseeker']">Job Seeker</button>
                   <br>
                   <button type="button" class="btn btn-outline-secondary mt-1 w-50 h-100" routerLinkActive="active"
-                          [routerLink]="['/signup-recruiter#top']">Recruiter</button>
+                          [routerLink]="['/signup-recruiter']">Recruiter</button>
                 </div>
               </div>
             </div>
