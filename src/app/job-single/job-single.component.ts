@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RecruiterService} from '../shared/services/recruiter.service';
 import {JobPostModel, Recruiter} from '../shared/models/recruiter.model';
-import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-job-single',
@@ -9,13 +8,13 @@ import {ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./job-single.component.css']
 })
 export class JobSingleComponent implements OnInit {
-
   jobpost: JobPostModel;
   recruiter: Recruiter;
   constructor(private recruiterService: RecruiterService) { }
 
   ngOnInit() {
     this.recruiterService.castedData.subscribe(data => {
+      console.log(data);
       if (data) {
         this.jobpost = data
       }

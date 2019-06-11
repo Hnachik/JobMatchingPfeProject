@@ -1,0 +1,182 @@
+<section class="section-hero overlay inner-page bg-image" [ngStyle]="{'background-image': getUrl()}" id="home-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h1 class="text-white font-weight-bold">{{jobpost.job_title}}</h1>
+        <div class="custom-breadcrumbs">
+          <a href="#">Home</a> <span class="mx-2 slash">/</span>
+          <a href="#">Job</a> <span class="mx-2 slash">/</span>
+          <span class="text-white"><strong>{{jobpost.job_title}}</strong></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="site-section">
+  <div class="container">
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-8 mb-4 mb-lg-0">
+        <div class="d-flex align-items-center">
+          <div class="border p-2 d-inline-block mr-3 rounded">
+            <img [src]="jobpost.recruiter.company_logo" alt="Free Website Template By Free-Template.co">
+          </div>
+          <div>
+            <h2>{{jobpost.job_type}}</h2>
+            <div>
+              <span class="ml-0 mr-2 mb-2"><span class="icon-briefcase mr-2"></span>{{jobpost.recruiter.company_name}}</span>
+              <span class="m-2"><span class="icon-room mr-2"></span>{{jobpost.location}}</span>
+              <span class="m-2"><span class="icon-clock-o mr-2"></span><span class="text-primary">{{jobpost.job_type}}</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="row">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="mb-5">
+          <figure class="mb-5"><img src="../../assets/images/job_single_img_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid rounded"></figure>
+          <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-align-left mr-3"></span>Job Description</h3>
+          <p>{{jobpost.job_description}}</p>
+          <p>Velit unde aliquam et voluptas reiciendis non sapiente labore, deleniti asperiores blanditiis nihil quia officiis dolor vero iste dolore vel molestiae saepe. Id nisi, consequuntur sunt impedit quidem, vitae mollitia!</p>
+        </div>
+        <div class="mb-5">
+          <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-rocket mr-3"></span>Responsibilities</h3>
+          <p>{{jobpost.job_requirements}}</p>
+          <!--          <ul class="list-unstyled m-0 p-0">-->
+          <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span></li>-->
+          <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Velit unde aliquam et voluptas reiciendis n Velit unde aliquam et voluptas reiciendis non sapiente labore</span></li>-->
+          <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span></li>-->
+          <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span></li>-->
+          <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores blanditiis nihil quia officiis dolor</span></li>-->
+          <!--          </ul>-->
+        </div>
+
+        <!--        <div class="mb-5">-->
+        <!--          <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-book mr-3"></span>Education + Experience</h3>-->
+        <!--          <ul class="list-unstyled m-0 p-0">-->
+        <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span></li>-->
+        <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Velit unde aliquam et voluptas reiciendis non sapiente labore</span></li>-->
+        <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span></li>-->
+        <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span></li>-->
+        <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores blanditiis nihil quia officiis dolor</span></li>-->
+        <!--          </ul>-->
+        <!--        </div>-->
+
+        <!--        <div class="mb-5">-->
+        <!--          <h3 class="h5 d-flex align-items-center mb-4 text-primary"><span class="icon-turned_in mr-3"></span>Other Benifits</h3>-->
+        <!--          <ul class="list-unstyled m-0 p-0">-->
+        <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Necessitatibus quibusdam facilis</span></li>-->
+        <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Velit unde aliquam et voluptas reiciendis non sapiente labore</span></li>-->
+        <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Commodi quae ipsum quas est itaque</span></li>-->
+        <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit</span></li>-->
+        <!--            <li class="d-flex align-items-start mb-2"><span class="icon-check_circle mr-2 text-muted"></span><span>Deleniti asperiores blanditiis nihil quia officiis dolor</span></li>-->
+        <!--          </ul>-->
+        <!--        </div>-->
+        <ngx-spinner
+          bdOpacity = 1
+          bdColor = "#ffffff"
+          size = "large"
+          color = "#3fa534"
+          type = "pacman">
+          <br><br><br><br>
+          <h2 style="color: black; font-style: italic" class="text-center"> Our server is checking for posts that matches your resume</h2>
+          <h2 style="color: black; font-style: italic" class="text-center" > Can you please wait for just 2 or 3 minutes :)</h2>
+        </ngx-spinner>
+        <div class="row mb-5">
+          <div class="col">
+            <a (click)="EvaluateMatching()" class="btn btn-block btn-primary btn-md">Related Resumes</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-lg-4">
+        <div class="bg-light p-3 border rounded mb-4">
+          <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Job Summary</h3>
+          <ul class="list-unstyled pl-3 mb-0">
+            <li class="mb-2"><strong class="text-black">Published on:</strong> {{jobpost.publication_date}}</li>
+            <li class="mb-2"><strong class="text-black">Vacancy:</strong> 20</li>
+            <li class="mb-2"><strong class="text-black">Employment Status:</strong> {{jobpost.job_type}}</li>
+            <li class="mb-2"><strong class="text-black">Experience:</strong> 2 to 3 year(s)</li>
+            <li class="mb-2"><strong class="text-black">Job Location:</strong> {{jobpost.location}}</li>
+            <!--            <li class="mb-2"><strong class="text-black">Salary:</strong> $60k - $100k</li>-->
+            <li class="mb-2"><strong class="text-black">Gender:</strong> Any</li>
+            <li class="mb-2"><strong class="text-black">Application Deadline:</strong> {{jobpost.expiration_date}}</li>
+          </ul>
+        </div>
+
+        <div class="bg-light p-3 border rounded">
+          <h3 class="text-primary  mt-3 h5 pl-3 mb-3 ">Share</h3>
+          <div class="px-3">
+            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-facebook"></span></a>
+            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-twitter"></span></a>
+            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-linkedin"></span></a>
+            <a href="#" class="pt-3 pb-3 pr-3 pl-0"><span class="icon-pinterest"></span></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="site-section" id="next">
+  <div class="container">
+
+    <div class="row mb-5 justify-content-center">
+      <div class="col-md-7 text-center">
+        <h2 class="section-title mb-2">1 Related Resume</h2>
+      </div>
+    </div>
+
+    <ul class="job-listings mb-5">
+      <li class="job-listing d-block d-sm-flex pb-3 pb-sm-0 align-items-center">
+        <a href="job-single.html"></a>
+        <div class="job-listing-logo">
+          <img src="../../assets/images/job_logo_1.jpg" alt="Free Website Template by Free-Template.co" class="img-fluid">
+        </div>
+
+        <div class="job-listing-about d-sm-flex custom-width w-100 justify-content-between mx-4">
+          <div class="job-listing-position custom-width w-50 mb-3 mb-sm-0">
+            <h2>Product Designer</h2>
+            <strong>Adidas</strong>
+          </div>
+          <div class="job-listing-location mb-3 mb-sm-0 custom-width w-25">
+            <span class="icon-room"></span> New York, New York
+          </div>
+          <div class="job-listing-meta">
+            <span class="badge badge-danger">Part Time</span>
+          </div>
+        </div>
+      </li>
+
+
+
+
+    </ul>
+
+    <div class="row pagination-wrap">
+      <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">
+        <span>Showing 1-7 Of 22,392 Jobs</span>
+      </div>
+      <div class="col-md-6 text-center text-md-right">
+        <div class="custom-pagination ml-auto">
+          <a href="#" class="prev">Prev</a>
+          <div class="d-inline-block">
+            <a href="#" class="active">1</a>
+            <a href="#">2</a>
+            <a href="#">3</a>
+            <a href="#">4</a>
+          </div>
+          <a href="#" class="next">Next</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>

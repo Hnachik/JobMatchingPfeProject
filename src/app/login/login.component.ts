@@ -33,11 +33,15 @@ export class LoginComponent implements OnInit {
     this.userService.userAuthentication(fields).subscribe((data: any) => {
         this.toastr.success('You are now Login !','Successful authentication !', {
           timeOut: 2000});
-        console.log(data);
+
+        if (data.user.is_jobSeeker) {
+          this.router.navigate(['/post-resume']);
+        } else {
+          this.router.navigate(['/post-job']);
+        }
         localStorage.setItem('userToken', data.token);
         this.userService.editData(data);
-        this.router.navigate(['/home']);
-      },
+        },
       (err: HttpErrorResponse) => {
         this.toastr.error('Please check your username or password !','Unsuccessful authentication !', {
           timeOut: 3000});

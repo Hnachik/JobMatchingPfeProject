@@ -129,7 +129,25 @@ export class ResumeUpdateModel {
 export class MatchedPostsModel {
   id: number;
   seeker: number;
+  recruiter: CompanyModel;
   job_title: string;
+  post_url: string;
   job_description: string;
-  cosine_distance: number;
+  job_requirements: string;
+  publication_date: Date;
+  expiration_date: Date;
+  job_type: string;
+  location: string;
 }
+
+export class ApplicationModel {
+  id: number;
+  seeker: number;
+  published_date: Date;
+  post: JobPostModel;
+}
+
+export class Application {
+  post: number;
+}
+

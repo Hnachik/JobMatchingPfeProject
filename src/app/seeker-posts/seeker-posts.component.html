@@ -8,12 +8,12 @@
       <div class="col-md-3 mb-3" style="width: 200px;">
         <div class="mj-block mj-profile-push ">
           <header>
-            <div class="img-wrapper">
-              <a href="/candidate-console/profile" data-event-category="PROFILE_PUSH" data-event-action="Click" data-event-label="VIEW_METEO">
-                <span class="sr-only">Mon profil complété à 93</span>
-                <span id="progress-bar" aria-hidden="true" class="profile-progress-bar" data-percent="93"><svg viewBox="0 0 100 100" style="display: block; width: 100%;"><path d="M 50,50 m 0,-45 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90" stroke="#eee" stroke-width="10" fill-opacity="0"></path><path d="M 50,50 m 0,-45 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90" stroke="#3498db" stroke-width="10" fill-opacity="0" style="stroke-dasharray: 282.783, 282.783; stroke-dashoffset: 19.7948;"></path></svg><div class="progressbar-text" style="position: absolute; left: 50%; top: 50%; padding: 0px; margin: 0px; transform: translate(-50%, -50%); color: rgb(22, 53, 78); font-size: 14px;">93%</div></span>
-              </a>
-            </div>
+<!--            <div class="img-wrapper">-->
+<!--              <a href="/candidate-console/profile" data-event-category="PROFILE_PUSH" data-event-action="Click" data-event-label="VIEW_METEO">-->
+<!--                <span class="sr-only">Mon profil complété à 93</span>-->
+<!--                <span id="progress-bar" aria-hidden="true" class="profile-progress-bar" data-percent="93"><svg viewBox="0 0 100 100" style="display: block; width: 100%;"><path d="M 50,50 m 0,-45 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90" stroke="#eee" stroke-width="10" fill-opacity="0"></path><path d="M 50,50 m 0,-45 a 45,45 0 1 1 0,90 a 45,45 0 1 1 0,-90" stroke="#3498db" stroke-width="10" fill-opacity="0" style="stroke-dasharray: 282.783, 282.783; stroke-dashoffset: 19.7948;"></path></svg><div class="progressbar-text" style="position: absolute; left: 50%; top: 50%; padding: 0px; margin: 0px; transform: translate(-50%, -50%); color: rgb(22, 53, 78); font-size: 14px;">93%</div></span>-->
+<!--              </a>-->
+<!--            </div>-->
             <div class="title filling-rate-93">
 
               <a href="/candidate-console/profile" data-event-category="PROFILE_PUSH" data-event-action="Click" data-event-label="VIEW_METEO">
@@ -21,7 +21,7 @@
               </a>
               <br>
 
-              <a class="link-ninja " href="/candidate-console/profile" data-event-category="PROFILE_PUSH" data-event-action="Click" data-event-label="VIEW_METEO">
+              <a class="link-ninja " routerLink="/profile" data-event-category="PROFILE_PUSH" data-event-action="Click" data-event-label="VIEW_METEO">
 
                 Mettre à jour mon profil
 
@@ -33,15 +33,15 @@
             <li>
               <a href="/candidate-console/offers/saved">
                 <span aria-hidden="true" class="fa mj-icon-offer-save-o"></span>
-                Mes favoris (<span data-saved-offer-count="">2</span>)
+                Mes offres d'emploi (<span data-saved-offer-count="">20</span>)
               </a>
             </li>
-            <li>
-              <a href="/candidate-console/applications">
-                <span aria-hidden="true" class="fa fa-paper-plane-o"></span>
-                Mes candidatures (2)
-              </a>
-            </li>
+<!--            <li>-->
+<!--              <a href="/candidate-console/applications">-->
+<!--                <span aria-hidden="true" class="fa fa-paper-plane-o"></span>-->
+<!--                Mes candidatures (2)-->
+<!--              </a>-->
+<!--            </li>-->
             <li>
               <a href="/candidate-console/email-alerts">
                 <span aria-hidden="true" class="ft ft-bell"></span>
@@ -279,17 +279,17 @@
 
       <div class="col-md-9">
         <div class="row">
-          <ul class="mj-offers-list" data-meteo="true">
-            <li *ngFor="let matchedPost of matchedPosts">
-              <article class="mj-offer logged shadow" data-url="/jobsearch/api/offer/9271179" data-meteo="true" data-id="9271179" id="offerId9271179">
+          <ul class="mj-offers-list" >
+            <li *ngFor="let matchedPost of matchedPosts | paginate: config" style="width: 855px">
+              <article class="mj-offer logged shadow" id="offerId9271179">
                 <!-- Main data -->
                 <header class="clearfix">
                   <!--  Logo -->
-                  <div class="logo  ">
+                  <div class="logo">
                     <span>
                       <span>
-                        <img src="https://www.tanitjobs.com/files/pictures/manwork_logo.png" data-toggle="tooltip"
-                             data-container=".mj-offer" title="" alt="La Relève" data-original-title="Entreprise : La Relève">
+                        <img [src]="matchedPost.recruiter.company_logo" data-toggle="tooltip"
+                             data-container=".mj-offer" title="" alt="Image Introuvable" data-original-title="Entreprise : La Relève">
                       </span>
                     </span>
                   </div>
@@ -304,7 +304,7 @@
                       <ul class="list-unstyled">
                         <!--  Weather -->
                         <li class="meteo dropdown dropdown-hover">
-                          <a href="/candidat/offres/stages-business-developer-h-f-paris-ile-de-france-stage-9271179?scroll=aW5kZXg9MCZ0b3RhbD0yNDAmbXktbWV0ZW89dHJ1ZQ==">
+                          <a>
                             <img alt="" src="//media.meteojob.com/theme/2.3/images/scoring/24/sun-clouded.png?201802221640&amp;d79e5665be3ae245210fa550e162c2273bdbe454" srcset="//media.meteojob.com/theme/2.3/images/scoring/24/sun-clouded.png?201802221640&amp;d79e5665be3ae245210fa550e162c2273bdbe454 1x, //media.meteojob.com/theme/2.3/images/scoring/48/sun-clouded.png?201802221640&amp;c4661de83f389edf82c5fe5e6c914e8455b1853d 2x" title="" data-toggle="tooltip" data-original-title="Proche de votre profil">
                           </a>
                         </li>
@@ -314,16 +314,15 @@
                           <span>•</span>
                         </li>
 
-                        <li><h3>Stage</h3></li>
-                        <li><h3> - 6 mois</h3></li>
+                        <li><h3>{{matchedPost.job_type}}</h3></li>
                         <li>
                           <span>•</span>
-                          <h3>Paris (75)</h3>
+                          <h3>Dernier délai {{matchedPost.expiration_date}}</h3>
                         </li>
                       </ul>
                     </div>
                     <div class="tags">
-                      <div class="published-date">Il y a 24 heures</div>
+                      <div class="published-date"> Publiée le {{matchedPost.publication_date}}</div>
                     </div>
                   </div>
                 </header>
@@ -331,7 +330,7 @@
                 <!-- Offer preview -->
                 <div class="preview-wrapper">
                   <div class="preview">
-                    {{matchedPost.job_description}}
+                    {{matchedPost.job_description | slice:0:300}}...
                   </div>
                   <div class="loader">
                     <img aria-live="polite" role="status" src="//media.meteojob.com/jobsearch/assets/images/spinner/64.gif?201802221640&amp;a9100b88545982fd5f1fa3a8319d716054891513" alt="En cours de chargement...">
@@ -342,8 +341,8 @@
                 <div class="details hidden-xs">
                   <div id="offerDetails_9271179" class="details-content collapse"></div>
                   <div class="details-footer" data-details-title="Stages Business Developer (H/F) Paris (75) - Île-de-France - Stage">
-                    <a class="link-ninja offer-details-toggle" data-hide-text="Masquer l'offre d'emploi" data-show-text="Détails" href="#offerDetails_9271179">
-                      <span data-collapse-text="">Détails</span>
+                    <a class="link-ninja offer-details-toggle" >
+                      <span [routerLink]="['/matched-post-detail', matchedPost.id]" routerLinkActive="router-link-active">Voir plus</span>
                       <span aria-hidden="true" class="fa fa-caret-down"></span>
                       <span aria-hidden="true" class="fa fa-caret-up"></span>
                     </a>
@@ -355,17 +354,24 @@
                   <div class="action-buttons">
                     <!-- Remove icon -->
                     <div class="remove-offer">
-                      <button class="fa fa-trash" title="" data-toggle="tooltip" data-event-category="REMOVE_OFFER" data-event-action="Click" data-event-label="VIEW_METEO" data-original-title="Retirer de ma météo">
+                      <button class="fa fa-trash" title="" data-toggle="tooltip" data-event-category="REMOVE_OFFER"
+                              data-event-action="Click" data-event-label="VIEW_METEO"
+                              data-original-title="Retirer de ma météo"
+                              (click)="deleteMatchedPost(matchedPost.id)">
                         <span class="sr-only">Retirer de ma météo</span>
                       </button>
                     </div>
 
                     <!-- Save icon -->
                     <div class="save-offer">
-                      <button data-btn-save="" class="link-ninja mj-offer-save fa mj-icon-offer-save-o" title="" data-toggle="tooltip" data-save-msg="Sauvegarder l'offre" data-unsave-msg="Retirer de mes favoris" data-event-category="SAVE_OFFER" data-event-action="Click" data-event-label="VIEW_METEO" data-offer-id="9271179" data-original-title="Sauvegarder l'offre">
+                      <button data-btn-save="" class="link-ninja mj-offer-save fa mj-icon-offer-save-o" title=""
+                              data-toggle="tooltip" data-save-msg="Sauvegarder l'offre"
+                              data-unsave-msg="Retirer de mes favoris" data-event-category="SAVE_OFFER"
+                              data-event-label="VIEW_METEO" data-offer-id="9271179" data-original-title="Sauvegarder l'offre"
+                              >
                         <span class="sr-only">
                             <span class="remove">Retirer de mes favoris</span>
-                            <span class="save">Sauvegarder l'offre</span>
+                            <span class="save" >Sauvegarder l'offre</span>
                         </span>
                       </button>
                     </div>
@@ -374,8 +380,7 @@
                 </div>
 
                 <!-- Block link -->
-                <a class="block-link"
-                   href="/candidat/offres/stages-business-developer-h-f-paris-ile-de-france-stage-9271179?scroll=aW5kZXg9MCZ0b3RhbD0yNDAmbXktbWV0ZW89dHJ1ZQ==" rel="nofollow">
+                <a class="block-link">
                   <span class="sr-only">Business Developer - Startup Tech</span>
                 </a>
 
@@ -383,6 +388,36 @@
               </article>
             </li>
           </ul>
+
+          <div class="pagination" style="width: 855px;">
+            <span class="pagination-label">Page :</span>
+            <pagination-template #p="paginationApi"
+                                 (pageChange)="pageChange($event)">
+              <a class="pagination-action" aria-label="Première page" style="cursor: pointer;" [class.disabled]="p.isFirstPage()" *ngIf="!p.isFirstPage()" (click)="p.previous()">
+                <span aria-hidden="true" class="fa fa-angle-double-left"></span>
+              </a>
+              <ul class="pagination-pages">
+                <li class="d-inline-block" *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">
+                  <a style="cursor: pointer;" (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">{{page.label}}</a>
+                  <a class="active" style="cursor: pointer;" *ngIf="p.getCurrent() === page.value">{{page.label}}</a>
+                </li>
+              </ul>
+
+              <a class="pagination-action" aria-label="Dernière page" style="cursor: pointer;" [class.disabled]="p.isLastPage()" *ngIf="!p.isLastPage()" (click)="p.next()">
+                <span aria-hidden="true" class="fa fa-angle-double-right"></span>
+              </a>
+            </pagination-template>
+<!--            <ul class="pagination-pages">-->
+<!--              <li><a aria-label="Page : 2" rel="nofollow">2</a></li>-->
+<!--              <li><a aria-label="Page : 3" rel="nofollow">3</a></li>-->
+<!--              <li><span>4</span></li>-->
+<!--              <li><a aria-label="Page : 5" rel="nofollow">5</a></li>-->
+<!--              <li><a aria-label="Page : 6" rel="nofollow">6</a></li>-->
+<!--            </ul>-->
+<!--            <a class="pagination-action" aria-label="Dernière page" href="/jobsearch/offers?page=7&amp;my-meteo=true" rel="nofollow">-->
+<!--              <span aria-hidden="true" class="fa fa-angle-double-right"></span>-->
+<!--            </a>-->
+          </div>
         </div>
       </div>
     </div>

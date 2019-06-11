@@ -1,0 +1,79 @@
+
+<section class="section-hero overlay inner-page bg-image" [ngStyle]="{'background-image': getUrl()}" id="home-section">
+
+</section>
+
+<section class="site-section bg-light">
+  <div class="container">
+    <div class="row flex-lg-nowrap">
+      <div class="col-md-3 mb-3" style="width: 200px;">
+        <div class="sidebar__content shadow">
+          <div class="text-center profile__image">
+            <a href="https://www.tanitjobs.com/company/1615/decade/">
+              <img class="profile__img profile__img-company" [src]="recruiter.company_logo" alt="">
+            </a>
+          </div>
+          <div class="profile__info">
+            <div class="text-center profile__info__name">A propos de {{recruiter.company_name}}</div>
+            <div class="profile__info__description content-text">
+              ses racines de la non-performance industrielle en collaboration avec la Qualité et la Production et contribuer à l’élaboration de plans d’actions
+              pour l’amélioration. Rédiger et mettre à jour les documents de spécifications techniques des produits, les fiches pilotes,
+              les instructions de travail, les aides visuelles ainsi que d'autres documents et fiches techniques pertinents.
+              Piloter et coordonner la réalisation des tests sur le terrain et vérifier l'efficacité des plans d'actions ou le
+              déploiement de projets d'amélioration. Analyser les rapports de tests incluant les résultats des tests des échantillons produits.
+              Planifier, diriger et suivre de près le déroulement des chantiers d'amélioration continue (5S, SMED, etc.).
+              Garantir la formation des équipes de production sur les outils d'amélioration continue
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row">
+          <div class="workshop shadow bg-white mb-3" *ngFor="let job of posts ">
+            <div class="row">
+              <div class="col-md-8">
+                <img [src]="job.recruiter.company_logo" alt="Image" style="height:20px;">
+              </div>
+              <div class="col-md-4">
+              </div>
+            </div>
+
+            <h3><a (click)="viewDetailPost(job.id)">{{job.job_title}}</a></h3>
+            <p>{{job.job_description}}</p>
+            <div class="ad-meta" style="height: 40px;">
+              <div class="meta-content">
+                <span class="dated"><a routerLink="/home"><i class="fa fa-calendar fa-sm"></i>&nbsp;<b>{{job.expiration_date}}</b></a></span>
+              </div>
+              <div class="user-option pull-right">
+                <div class="mt-1 mr-3">
+                  <i class="icon-location-pin icons"></i>&nbsp;<u>Tunis</u>
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+<!--          <div class="row pagination-wrap">-->
+<!--            <div class="col-md-6 text-center text-md-left mb-4 mb-md-0">-->
+<!--              <span>Showing 1-4 Of {{posts.length}} Jobs</span>-->
+<!--            </div>-->
+<!--            <div class="col-md-6 text-center text-md-right">-->
+<!--              <div class="custom-pagination ml-auto" >-->
+<!--                <pagination-template #p="paginationApi"-->
+<!--                                     (pageChange)="pageChange($event)">-->
+<!--                  <a class="prev" style="cursor: pointer;" [class.disabled]="p.isFirstPage()" *ngIf="!p.isFirstPage()" (click)="p.previous()">Prev</a>-->
+<!--                  <div class="d-inline-block" *ngFor="let page of p.pages" [class.current]="p.getCurrent() === page.value">-->
+<!--                    <a style="cursor: pointer;" (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">{{page.label}}</a>-->
+<!--                    <a class="active" style="cursor: pointer;" *ngIf="p.getCurrent() === page.value">{{page.label}}</a>-->
+<!--                  </div>-->
+<!--                  <a class="next" style="cursor: pointer;" [class.disabled]="p.isLastPage()" *ngIf="!p.isLastPage()" (click)="p.next()">Next</a>-->
+<!--                </pagination-template>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

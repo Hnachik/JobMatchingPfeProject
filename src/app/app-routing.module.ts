@@ -14,6 +14,11 @@ import {PostResumeComponent} from './post-resume/post-resume.component';
 import {ResumeResolve} from './shared/resolvers/resume.resolve';
 import {SeekerPostsComponent} from './seeker-posts/seeker-posts.component';
 
+import { MatchedPostDetailComponent } from './matched-post-detail/matched-post-detail.component';
+import {RecruiterProfileComponent} from './recruiter-profile/recruiter-profile.component';
+
+import { MatchedPostResumeComponent } from './matched-post-resume/matched-post-resume.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent},
@@ -22,8 +27,11 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent},
   { path: 'about', component: AboutComponent },
   { path: 'seeker-posts', component: SeekerPostsComponent},
+  { path: 'matched-post-resume', component: MatchedPostResumeComponent},
+  { path: 'profile-recruiter', component: RecruiterProfileComponent},
   { path: 'post-job', component: PostJobComponent},
-  { path: 'blog', component: BlogComponent, resolve: {
+  { path: 'matched-post-detail/:id', component: MatchedPostDetailComponent},
+  { path: 'profile', component: BlogComponent, resolve: {
       resumeData: ResumeResolve}
       },
   { path: 'login', component: LoginComponent},

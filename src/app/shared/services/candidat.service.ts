@@ -22,6 +22,9 @@ export class CandidatService {
   private educData: BehaviorSubject<EducationBackgroundModel>= new BehaviorSubject<EducationBackgroundModel>();
   // @ts-ignore
   private data: BehaviorSubject<any>= new BehaviorSubject<any>();
+  // @ts-ignore
+  private matchedData: BehaviorSubject<MatchedPostsModel> = new BehaviorSubject<MatchedPostsModel>();
+  castedData = this.data.asObservable();
   updatedWork = this.workData.asObservable();
   updatedEducation = this.educData.asObservable();
   updatedResume = this.resumeData.asObservable();
@@ -44,6 +47,10 @@ export class CandidatService {
 
   deleteData(data) {
     this.data.next(data)
+  }
+
+  editData(data) {
+    this.matchedData.next(data)
   }
 
   evaluateResume(): Observable<any> {
@@ -117,6 +124,11 @@ export class CandidatService {
     return  this.http.delete(`${this.rootUrl}/api/jobseeker/education/${id}/`,{ headers: reqHeader });
   }
 
+  deleteMatchedPost(id: number) {
+    const reqHeader = new HttpHeaders({'Authorization': 'token ' + localStorage.getItem('userToken')});
+    return  this.http.delete(`${this.rootUrl}/api/jobseeker/resume/matched-posts/${id}/`,{ headers: reqHeader });
+  }
+
   deleteWorkHistory(id: number) {
     const reqHeader = new HttpHeaders({'Authorization': 'token ' + localStorage.getItem('userToken')});
     return  this.http.delete(`${this.rootUrl}/api/jobseeker/whistory/${id}/`,{ headers: reqHeader });
@@ -125,5 +137,20 @@ export class CandidatService {
   getMatchedPosts(): Observable<MatchedPostsModel[]> {
     const reqHeader = new HttpHeaders({'Authorization': 'token ' + localStorage.getItem('userToken')});
     return  this.http.get<MatchedPostsModel[]>(`${this.rootUrl}/api/jobseeker/resume/matched-posts/`, { headers: reqHeader });
+  }
+
+  getDetailMatchedJobs(id: number): Observable<MatchedPostsModel> {
+    const reqHeader = new HttpHeaders({'Authorization': 'token ' + localStorage.getItem('userToken')});
+    return  this.http.get<MatchedPostsModel>(`${this.rootUrl}/api/jobseeker/resume/matched-posts/${id}/`, { headers: reqHeader });
+  }
+
+  postPreferredJobs(post: MatchedPostsModel) {
+    const reqHeader = new HttpHeaders({'Content-Type': 'application/json', 'Authorization': 'token ' + localStorage.getItem('userToken')});
+    return  this.http.post(`${this.rootUrl}/api/jobseeker/preferred/`, post, { headers: reqHeader });
+  }
+
+  getPreferredJobs(): Observable<MatchedPostsModel[]> {
+    const reqHeader = new HttpHeaders({'Authorization': 'token ' + localStorage.getItem('userToken')});
+    return  this.http.get<MatchedPostsModel[]>(`${this.rootUrl}/api/jobseeker/preferred/`, { headers: reqHeader });
   }
 }

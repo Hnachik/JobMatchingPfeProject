@@ -36,6 +36,9 @@ import {RecruiterService} from './shared/services/recruiter.service';
 import {CandidatService} from './shared/services/candidat.service';
 import {ResumeResolve} from './shared/resolvers/resume.resolve';
 import { SeekerPostsComponent } from './seeker-posts/seeker-posts.component';
+import { MatchedPostDetailComponent } from './matched-post-detail/matched-post-detail.component';
+import { RecruiterProfileComponent } from './recruiter-profile/recruiter-profile.component';
+import { MatchedPostResumeComponent } from './matched-post-resume/matched-post-resume.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +58,10 @@ import { SeekerPostsComponent } from './seeker-posts/seeker-posts.component';
     SignupRecruiterComponent,
     SignupJobseekerComponent,
     PostResumeComponent,
-    SeekerPostsComponent
+    SeekerPostsComponent,
+    MatchedPostDetailComponent,
+    RecruiterProfileComponent,
+    MatchedPostResumeComponent
   ],
   imports: [
     NgxPageScrollCoreModule.forRoot({duration: 600}),

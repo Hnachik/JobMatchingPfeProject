@@ -41,4 +41,9 @@ export class RecruiterService {
   editData(data) {
     this.data.next(data)
   }
+
+  evaluateResume(): Observable<any> {
+    const reqHeader = new HttpHeaders({'Authorization': 'token ' + localStorage.getItem('userToken')});
+    return  this.http.get<any>(`${this.rootUrl}/api/recruiter/post/evaluate/`, { headers: reqHeader });
+  }
 }

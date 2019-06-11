@@ -7,14 +7,15 @@
         <ul class="site-menu js-clone-nav d-none d-xl-block ml-0 pl-0">
           <li><a routerLink="/home" routerLinkActive="active" class="nav-link active">Home</a></li>
           <li><a routerLink="/about" >About</a></li>
+          <li><a routerLink="/profile-recruiter" *ngIf="getUserToken()!=null && is_recruiter">Recruiter Profile</a></li>
           <li><a routerLink="/contact" routerLinkActive="active">Contact</a></li>
           <li class="has-children" *ngIf="getUserToken()!=null && is_jobSeeker" >
             <a routerLink="/job-listing" routerLinkActive="active">Offres d'emploi</a>
             <ul class="dropdown">
-              <li><a routerLink="/job-single" routerLinkActive="active">Mes offres d'emploi</a></li>
-              <li><a routerLink="/blog" routerLinkActive="active">Mon profil</a></li>
-              <li><a routerLink="/seeker-posts" routerLinkActive="active">Mes favoris</a></li>
-              <li><a routerLink="/post-job" routerLinkActive="active">Mes candidatures</a></li>
+              <li><a routerLink="/seeker-posts" routerLinkActive="active">Mes offres d'emploi</a></li>
+              <li><a routerLink="/profile" routerLinkActive="active">Mon profil</a></li>
+<!--              <li><a routerLink="/seeker-posts" routerLinkActive="active">Mes favoris</a></li>-->
+<!--              <li><a routerLink="/post-job" routerLinkActive="active">Mes candidatures</a></li>-->
               <li><a routerLink="/post-job" routerLinkActive="active">Mes alertes</a></li>
             </ul>
           </li>
@@ -27,7 +28,7 @@
              class="btn btn-outline-white border-width-2 d-none d-lg-inline-block" style="margin-right: 2px;">
             <span class="mr-2 icon-add"></span>Post a Job</a>
 
-          <a *ngIf="getUserToken()!=null && is_jobSeeker" routerLink="/post-resume" routerLinkActive="active"
+          <a *ngIf="getUserToken()!=null && is_jobSeeker" routerLink="/profile" routerLinkActive="active"
              class="btn btn-outline-white border-width-2 d-none d-lg-inline-block" style="margin-right: 2px;">
             <span class="mr-2 icon-account_box"></span>Profil</a>
 
